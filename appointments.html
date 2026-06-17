@@ -18,25 +18,14 @@
     .booking-shell { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-lg); align-items: start; }
     .steps-row { display: flex; justify-content: space-between; margin-bottom: var(--space-lg); }
     .step { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; position: relative; font-size: 0.8rem; font-weight: 600; color: var(--color-body); }
-    .step::before {
-      content: ''; position: absolute; top: 16px; left: -50%; width: 100%; height: 2px;
-      background: var(--color-border); z-index: -1;
-    }
+    .step::before { content: ''; position: absolute; top: 16px; left: -50%; width: 100%; height: 2px; background: var(--color-border); z-index: -1; }
     .step:first-child::before { display: none; }
-    .step .step-num {
-      width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
-      background: var(--color-card); border: 2px solid var(--color-border); color: var(--color-body); font-weight: 700;
-      transition: all var(--t-fast);
-    }
+    .step .step-num { width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center; background: var(--color-card); border: 2px solid var(--color-border); color: var(--color-body); font-weight: 700; transition: all var(--t-fast); }
     .step.is-active .step-num, .step.is-done .step-num { background: var(--color-teal); border-color: var(--color-teal); color: #fff; }
     .step.is-active, .step.is-done { color: var(--color-heading); }
 
     .timeslot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
-    .timeslot {
-      padding: 10px 6px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm);
-      background: var(--color-card); font-size: 0.85rem; font-weight: 600; text-align: center;
-      transition: all var(--t-fast);
-    }
+    .timeslot { padding: 10px 6px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm); background: var(--color-card); font-size: 0.85rem; font-weight: 600; text-align: center; transition: all var(--t-fast); }
     .timeslot:hover { border-color: var(--color-teal); }
     .timeslot.is-selected { background: var(--gradient-emerald); color: #fff; border-color: transparent; }
     .timeslot.is-unavailable { opacity: 0.4; text-decoration: line-through; cursor: not-allowed; pointer-events: none; }
@@ -46,8 +35,120 @@
     .summary-row span:first-child { color: var(--color-body); }
     .summary-row span:last-child { font-weight: 600; color: var(--color-heading); }
 
+    /* Each form card stacks above the one below — prevents dropdowns hiding behind next card */
+    .booking-shell form > .card:nth-child(1) { position: relative; z-index: 40; }
+    .booking-shell form > .card:nth-child(2) { position: relative; z-index: 30; }
+    .booking-shell form > .card:nth-child(3) { position: relative; z-index: 20; }
+    .booking-shell form > .card:nth-child(4) { position: relative; z-index: 10; }
+
+    /* ── Shared trigger style (used by custom select + custom date picker) ── */
+    .cust-trigger {
+      width: 100%; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+      background: var(--color-card); border: 1.5px solid var(--color-border);
+      border-radius: var(--radius-sm); padding: 12px 14px;
+      font-size: 0.95rem; color: var(--color-body); text-align: left;
+      cursor: pointer; transition: border-color var(--t-fast), border-radius var(--t-fast);
+      font-family: inherit;
+    }
+    .cust-trigger:hover { border-color: var(--color-teal); }
+    .cust-trigger:focus { border-color: var(--color-teal); outline: none; }
+    .cust-trigger-label { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .cust-trigger-label.is-placeholder { color: var(--color-body); opacity: 0.7; }
+    .cust-trigger-icon { flex-shrink: 0; display: grid; place-items: center; transition: transform var(--t-fast); }
+    .cust-trigger-icon svg { display: block; }
+
+    /* ── Custom Select ── */
+    .cust-sel { position: relative; width: 100%; }
+    .cust-sel .cust-trigger { border-radius: var(--radius-sm); }
+    .cust-sel.is-open .cust-trigger { border-color: var(--color-teal); border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+    .cust-sel.is-open .cust-trigger-icon { transform: rotate(180deg); }
+    .cust-sel.is-disabled .cust-trigger { opacity: 0.5; cursor: not-allowed; }
+    .cust-sel__list {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--color-card); border: 1.5px solid var(--color-teal); border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.14); z-index: 3000;
+      max-height: 210px; overflow-y: auto;
+      display: none; list-style: none; margin: 0; padding: 4px 0;
+    }
+    .cust-sel.is-open .cust-sel__list { display: block; }
+    .cust-sel__opt {
+      padding: 11px 16px; font-size: 0.9rem; color: var(--color-heading);
+      cursor: pointer; transition: background var(--t-fast);
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+      border: none; background: none; width: 100%; text-align: left; font-family: inherit;
+    }
+    .cust-sel__opt:hover { background: var(--color-bg-alt); color: var(--color-teal); }
+    .cust-sel__opt.is-selected { background: var(--color-teal); color: #fff; }
+    .cust-sel__opt.is-placeholder { color: var(--color-body); opacity: 0.7; font-style: italic; }
+
+    /* ── Custom Date Picker ── */
+    .cust-date { position: relative; width: 100%; }
+    .cust-date.is-open .cust-trigger { border-color: var(--color-teal); border-radius: var(--radius-sm) var(--radius-sm) 0 0; }
+    .cust-date.is-open .cust-trigger-icon { transform: rotate(0deg); }
+    .cust-date__cal {
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: var(--color-card); border: 1.5px solid var(--color-teal); border-top: none;
+      border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.14); z-index: 3000;
+      display: none; padding: 10px 12px 12px;
+    }
+    .cust-date.is-open .cust-date__cal { display: block; }
+    .cust-date__nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+    .cust-date__nav-btn {
+      background: none; border: 1px solid var(--color-border); border-radius: var(--radius-sm);
+      width: 28px; height: 28px; display: grid; place-items: center;
+      cursor: pointer; font-size: 1rem; color: var(--color-heading); line-height: 1;
+      transition: background var(--t-fast), border-color var(--t-fast), color var(--t-fast);
+      font-family: inherit;
+    }
+    .cust-date__nav-btn:hover { background: var(--color-teal); color: #fff; border-color: var(--color-teal); }
+    .cust-date__month-lbl { font-weight: 700; font-size: 0.88rem; color: var(--color-heading); }
+    .cust-date__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 2px; }
+    .cust-date__wday { text-align: center; font-size: 0.68rem; font-weight: 700; color: var(--color-body); padding: 4px 0; }
+    .cust-date__day {
+      text-align: center; padding: 7px 2px; font-size: 0.8rem;
+      border-radius: var(--radius-sm); cursor: pointer;
+      transition: background var(--t-fast), color var(--t-fast);
+      border: none; background: none; font-family: inherit; color: var(--color-heading); width: 100%;
+    }
+    .cust-date__day:hover:not(:disabled):not(.is-other-month) { background: rgba(13,148,136,0.12); color: var(--color-teal); }
+    .cust-date__day.is-today { background: rgba(13,148,136,0.12); color: var(--color-teal); font-weight: 700; }
+    .cust-date__day.is-selected { background: var(--color-teal) !important; color: #fff !important; font-weight: 700; }
+    .cust-date__day.is-other-month { color: var(--color-border); cursor: default; }
+    .cust-date__day:disabled { opacity: 0.28; cursor: not-allowed; }
+
     @media (max-width: 900px) { .booking-shell { grid-template-columns: 1fr; } .summary-card { position: static; } }
     @media (max-width: 480px) { .timeslot-grid { grid-template-columns: repeat(2, 1fr); } .steps-row { font-size: 0.7rem; } }
+
+    @media (max-width: 600px) {
+      .apt-container { padding-left: 0 !important; padding-right: 0 !important; }
+      .booking-shell .card {
+        padding: 1rem 1.25rem !important;
+        border-radius: 0 !important;
+        border-left: none !important;
+        border-right: none !important;
+        margin-bottom: 8px !important;
+      }
+      .steps-row { gap: 4px; padding: 0 1rem; }
+      .step { font-size: 0.65rem; }
+      .form-control,
+      input[type="text"].form-control,
+      input[type="tel"].form-control,
+      input[type="email"].form-control,
+      input[type="number"].form-control,
+      textarea.form-control {
+        width: 100% !important; max-width: 100% !important;
+        min-width: 0 !important; box-sizing: border-box !important;
+        font-size: 0.88rem !important;
+      }
+      .cust-trigger { font-size: 0.88rem; padding: 10px 12px; }
+      .cust-sel__opt { font-size: 0.88rem; padding: 10px 14px; }
+      .cust-date__day { font-size: 0.76rem; padding: 6px 1px; }
+      .cust-date__wday { font-size: 0.62rem; }
+      .cust-date__month-lbl { font-size: 0.82rem; }
+      .grid-2 { gap: var(--space-sm) !important; }
+    }
   </style>
 </head>
 <body data-page="appointments">
@@ -65,7 +166,7 @@
     </section>
 
     <section class="section">
-      <div class="container">
+      <div class="container apt-container">
         <div class="steps-row" aria-hidden="true">
           <div class="step is-active"><div class="step-num">1</div>Department</div>
           <div class="step"><div class="step-num">2</div>Doctor</div>
@@ -75,43 +176,79 @@
 
         <div class="booking-shell">
           <form id="appointmentForm" data-validate novalidate>
+
+            <!-- Step 1: Department -->
             <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up">
               <span class="eyebrow">Step 1</span>
               <h3>Select Department</h3>
               <div class="form-group">
-                <label for="department">Department</label>
-                <select id="department" name="department" class="form-control" required>
-                  <option value="">Choose a department</option>
-                  <option value="general">General Practice</option>
-                  <option value="surgery">Surgery</option>
-                  <option value="medicine">Internal Medicine</option>
-                  <option value="dermatology">Dermatology &amp; Allergy</option>
-                  <option value="dentistry">Dentistry</option>
-                  <option value="emergency">Emergency &amp; Critical Care</option>
-                  <option value="exotic">Exotic &amp; Avian Medicine</option>
-                </select>
+                <label>Department</label>
+                <div class="cust-sel" id="deptSel">
+                  <button type="button" class="cust-trigger" aria-haspopup="listbox" aria-expanded="false">
+                    <span class="cust-trigger-label is-placeholder">Choose department</span>
+                    <span class="cust-trigger-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <ul class="cust-sel__list" role="listbox">
+                    <li class="cust-sel__opt is-placeholder" data-value="">Choose department</li>
+                    <li class="cust-sel__opt" data-value="general">General Practice</li>
+                    <li class="cust-sel__opt" data-value="surgery">Surgery</li>
+                    <li class="cust-sel__opt" data-value="medicine">Internal Medicine</li>
+                    <li class="cust-sel__opt" data-value="dermatology">Dermatology &amp; Allergy</li>
+                    <li class="cust-sel__opt" data-value="dentistry">Dentistry</li>
+                    <li class="cust-sel__opt" data-value="emergency">Emergency &amp; Critical Care</li>
+                    <li class="cust-sel__opt" data-value="exotic">Exotic &amp; Avian Medicine</li>
+                  </ul>
+                  <input type="hidden" id="department" name="department">
+                </div>
               </div>
             </div>
 
+            <!-- Step 2: Doctor -->
             <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up" data-delay="100">
               <span class="eyebrow">Step 2</span>
               <h3>Select Doctor</h3>
               <div class="form-group">
-                <label for="doctor">Doctor</label>
-                <select id="doctor" name="doctor" class="form-control" required>
-                  <option value="">Choose a department first</option>
-                </select>
+                <label>Doctor</label>
+                <div class="cust-sel is-disabled" id="doctorSel">
+                  <button type="button" class="cust-trigger" aria-haspopup="listbox" aria-expanded="false" disabled>
+                    <span class="cust-trigger-label is-placeholder">Choose a department first</span>
+                    <span class="cust-trigger-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+                  </button>
+                  <ul class="cust-sel__list" role="listbox">
+                    <li class="cust-sel__opt is-placeholder" data-value="">Choose a department first</li>
+                  </ul>
+                  <input type="hidden" id="doctor" name="doctor">
+                </div>
               </div>
             </div>
 
+            <!-- Step 3: Date & Time -->
             <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up" data-delay="200">
               <span class="eyebrow">Step 3</span>
               <h3>Pick a Date &amp; Time</h3>
               <div class="form-group">
-                <label for="apptDate">Preferred Date</label>
-                <input type="date" id="apptDate" name="apptDate" class="form-control" required>
+                <label>Preferred Date</label>
+                <div class="cust-date" id="datePicker">
+                  <button type="button" class="cust-trigger" id="datePickerBtn" aria-haspopup="true" aria-expanded="false">
+                    <span class="cust-trigger-label is-placeholder" id="datePickerLabel">Select a date</span>
+                    <span class="cust-trigger-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>
+                      </svg>
+                    </span>
+                  </button>
+                  <div class="cust-date__cal" id="dateCal">
+                    <div class="cust-date__nav">
+                      <button type="button" class="cust-date__nav-btn cust-date__prev">&#8249;</button>
+                      <span class="cust-date__month-lbl"></span>
+                      <button type="button" class="cust-date__nav-btn cust-date__next">&#8250;</button>
+                    </div>
+                    <div class="cust-date__grid"></div>
+                  </div>
+                  <input type="hidden" id="apptDate" name="apptDate">
+                </div>
               </div>
-              <label>Available Time Slots</label>
+              <label style="margin-top:var(--space-sm);display:block;">Available Time Slots</label>
               <div class="timeslot-grid" id="timeslotGrid">
                 <button type="button" class="timeslot">9:00 AM</button>
                 <button type="button" class="timeslot">9:30 AM</button>
@@ -129,6 +266,7 @@
               <input type="hidden" id="selectedSlot" name="selectedSlot">
             </div>
 
+            <!-- Step 4: Your Details -->
             <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up" data-delay="300">
               <span class="eyebrow">Step 4</span>
               <h3>Your Details</h3>
@@ -136,37 +274,48 @@
                 <div class="form-group">
                   <label for="ownerName">Full Name</label>
                   <input type="text" id="ownerName" name="ownerName" class="form-control" data-rule="name" required>
-                  <div class="field-message error-message">⚠ Enter your full name.</div>
-                  <div class="field-message success-message">✓ Looks good.</div>
+                  <div class="field-message error-message">&#9888; Enter your full name.</div>
+                  <div class="field-message success-message">&#10003; Looks good.</div>
                 </div>
                 <div class="form-group">
                   <label for="ownerPhone">Phone Number</label>
                   <input type="tel" id="ownerPhone" name="ownerPhone" class="form-control" data-rule="phone" required>
-                  <div class="field-message error-message">⚠ Enter a valid phone number.</div>
-                  <div class="field-message success-message">✓ Looks good.</div>
+                  <div class="field-message error-message">&#9888; Enter a valid phone number.</div>
+                  <div class="field-message success-message">&#10003; Looks good.</div>
                 </div>
               </div>
               <div class="grid-2">
                 <div class="form-group">
                   <label for="ownerEmail">Email Address</label>
                   <input type="email" id="ownerEmail" name="ownerEmail" class="form-control" data-rule="email" required>
-                  <div class="field-message error-message">⚠ Enter a valid email.</div>
-                  <div class="field-message success-message">✓ Looks good.</div>
+                  <div class="field-message error-message">&#9888; Enter a valid email.</div>
+                  <div class="field-message success-message">&#10003; Looks good.</div>
                 </div>
                 <div class="form-group">
                   <label for="petName">Pet Name</label>
                   <input type="text" id="petName" name="petName" class="form-control" required>
-                  <div class="field-message error-message">⚠ Enter your pet's name.</div>
-                  <div class="field-message success-message">✓ Looks good.</div>
+                  <div class="field-message error-message">&#9888; Enter your pet's name.</div>
+                  <div class="field-message success-message">&#10003; Looks good.</div>
                 </div>
               </div>
               <div class="grid-2">
                 <div class="form-group">
-                  <label for="petSpecies">Pet Species</label>
-                  <select id="petSpecies" name="petSpecies" class="form-control" required>
-                    <option value="">Select species</option>
-                    <option>Dog</option><option>Cat</option><option>Bird</option><option>Rabbit</option><option>Other</option>
-                  </select>
+                  <label>Pet Species</label>
+                  <div class="cust-sel" id="speciesSel">
+                    <button type="button" class="cust-trigger" aria-haspopup="listbox" aria-expanded="false">
+                      <span class="cust-trigger-label is-placeholder">Select species</span>
+                      <span class="cust-trigger-icon"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg></span>
+                    </button>
+                    <ul class="cust-sel__list" role="listbox">
+                      <li class="cust-sel__opt is-placeholder" data-value="">Select species</li>
+                      <li class="cust-sel__opt" data-value="dog">Dog</li>
+                      <li class="cust-sel__opt" data-value="cat">Cat</li>
+                      <li class="cust-sel__opt" data-value="bird">Bird</li>
+                      <li class="cust-sel__opt" data-value="rabbit">Rabbit</li>
+                      <li class="cust-sel__opt" data-value="other">Other</li>
+                    </ul>
+                    <input type="hidden" id="petSpecies" name="petSpecies">
+                  </div>
                 </div>
                 <div class="form-group">
                   <label for="petAge">Pet Age (years)</label>
@@ -180,7 +329,7 @@
             </div>
 
             <button type="submit" class="btn btn-primary btn-block">Confirm Appointment</button>
-            <p id="appointmentSuccess" style="display:none;color:var(--color-success);margin-top:12px;font-weight:600;text-align:center;">✓ Appointment request received! We'll confirm by phone or email shortly.</p>
+            <p id="appointmentSuccess" style="display:none;color:var(--color-success);margin-top:12px;font-weight:600;text-align:center;">&#10003; Appointment request received! We'll confirm by phone or email shortly.</p>
           </form>
 
           <aside class="card summary-card" data-animate="fade-up" data-delay="150">
@@ -198,85 +347,266 @@
   </main>
 
   <footer id="site-footer" class="site-footer"></footer>
-  <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
+  <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">&#8593;</button>
 
   <link rel="stylesheet" href="assets/css/home.css">
   <script src="assets/js/layout.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/validation.js"></script>
   <script>
-    (function () {
-      const DOCTORS_BY_DEPT = {
-        general: ['Dr. Samuel Brooks — General Practice'],
-        surgery: ['Dr. Olivia Bennett — Chief Surgeon', 'Dr. Noah Whitfield — Orthopedic Surgery'],
-        medicine: ['Dr. Marcus Lee — Internal Medicine'],
-        dermatology: ['Dr. Priya Nandan — Dermatology & Allergy'],
-        dentistry: ['Dr. Grace Tanaka — Dentistry'],
-        emergency: ['Dr. Ethan Cole — Emergency & Critical Care'],
-        exotic: ['Dr. Layla Haddad — Exotic & Avian Medicine'],
-      };
+  (function () {
+    /* ── Data ── */
+    const DOCTORS_BY_DEPT = {
+      general:     [{ val: 'Dr. Samuel Brooks',  label: 'Dr. Samuel Brooks' }],
+      surgery:     [{ val: 'Dr. Olivia Bennett', label: 'Dr. Olivia Bennett' },
+                    { val: 'Dr. Noah Whitfield', label: 'Dr. Noah Whitfield' }],
+      medicine:    [{ val: 'Dr. Marcus Lee',     label: 'Dr. Marcus Lee' }],
+      dermatology: [{ val: 'Dr. Priya Nandan',   label: 'Dr. Priya Nandan' }],
+      dentistry:   [{ val: 'Dr. Grace Tanaka',   label: 'Dr. Grace Tanaka' }],
+      emergency:   [{ val: 'Dr. Ethan Cole',     label: 'Dr. Ethan Cole' }],
+      exotic:      [{ val: 'Dr. Layla Haddad',   label: 'Dr. Layla Haddad' }],
+    };
+    const DEPT_FULL = {
+      general: 'General Practice', surgery: 'Surgery',
+      medicine: 'Internal Medicine', dermatology: 'Dermatology & Allergy',
+      dentistry: 'Dentistry', emergency: 'Emergency & Critical Care',
+      exotic: 'Exotic & Avian Medicine',
+    };
 
-      const deptSelect = document.getElementById('department');
-      const doctorSelect = document.getElementById('doctor');
-      const dateInput = document.getElementById('apptDate');
-      const slotGrid = document.getElementById('timeslotGrid');
-      const selectedSlotInput = document.getElementById('selectedSlot');
-      const steps = document.querySelectorAll('.step');
-
-      dateInput.min = new Date().toISOString().split('T')[0];
-
-      deptSelect.addEventListener('change', () => {
-        const list = DOCTORS_BY_DEPT[deptSelect.value] || [];
-        doctorSelect.innerHTML = '<option value="">Choose a doctor</option>' +
-          list.map(d => `<option value="${d}">${d}</option>`).join('');
-        updateSummary();
-        updateSteps();
-      });
-
-      slotGrid.addEventListener('click', (e) => {
-        const btn = e.target.closest('.timeslot');
-        if (!btn || btn.classList.contains('is-unavailable')) return;
-        slotGrid.querySelectorAll('.timeslot').forEach(t => t.classList.remove('is-selected'));
-        btn.classList.add('is-selected');
-        selectedSlotInput.value = btn.textContent;
-        updateSummary();
-        updateSteps();
-      });
-
-      [doctorSelect, dateInput, document.getElementById('petName')].forEach(el => {
-        el.addEventListener('input', () => { updateSummary(); updateSteps(); });
-        el.addEventListener('change', () => { updateSummary(); updateSteps(); });
-      });
-
-      function updateSummary() {
-        document.getElementById('sumDept').textContent = deptSelect.options[deptSelect.selectedIndex]?.text !== 'Choose a department' ? (deptSelect.value ? deptSelect.options[deptSelect.selectedIndex].text : '—') : '—';
-        document.getElementById('sumDoctor').textContent = doctorSelect.value || '—';
-        document.getElementById('sumDate').textContent = dateInput.value || '—';
-        document.getElementById('sumTime').textContent = selectedSlotInput.value || '—';
-        document.getElementById('sumPet').textContent = document.getElementById('petName').value || '—';
-      }
-
-      function updateSteps() {
-        const filled = [deptSelect.value, doctorSelect.value, (dateInput.value && selectedSlotInput.value), document.getElementById('petName').value];
-        steps.forEach((step, idx) => {
-          step.classList.toggle('is-done', !!filled[idx]);
-          step.classList.toggle('is-active', !filled[idx] && (idx === 0 || filled[idx - 1]));
-        });
-      }
-
-      document.getElementById('appointmentForm').addEventListener('submit', function (e) {
-        e.preventDefault();
-        const valid = Array.from(this.querySelectorAll('.form-control[required]')).every(f => StacklyValidate.validateField(f));
-        if (valid && selectedSlotInput.value) {
-          document.getElementById('appointmentSuccess').style.display = 'block';
-          updateSummary();
-        } else if (!selectedSlotInput.value) {
-          alert('Please select an available time slot.');
+    /* ── Close all custom controls ── */
+    function closeAll(except) {
+      document.querySelectorAll('.cust-sel.is-open, .cust-date.is-open').forEach(el => {
+        if (el !== except) {
+          el.classList.remove('is-open');
+          const btn = el.querySelector('[aria-expanded]');
+          if (btn) btn.setAttribute('aria-expanded', 'false');
         }
       });
+    }
+    document.addEventListener('click', () => closeAll(null));
 
-      updateSteps();
-    })();
+    /* ── Custom Select factory ── */
+    function makeCustSel(wrapId, onChange) {
+      const wrap   = document.getElementById(wrapId);
+      const btn    = wrap.querySelector('.cust-trigger');
+      const lbl    = wrap.querySelector('.cust-trigger-label');
+      const list   = wrap.querySelector('.cust-sel__list');
+      const hidden = wrap.querySelector('input[type="hidden"]');
+
+      function bindItems() {
+        list.querySelectorAll('.cust-sel__opt').forEach(opt => {
+          opt.addEventListener('click', () => pick(opt));
+        });
+      }
+      function pick(opt) {
+        hidden.value = opt.dataset.value;
+        lbl.textContent = opt.textContent;
+        lbl.classList.toggle('is-placeholder', !opt.dataset.value);
+        list.querySelectorAll('.cust-sel__opt').forEach(o => o.classList.remove('is-selected'));
+        if (opt.dataset.value) opt.classList.add('is-selected');
+        close();
+        if (onChange) onChange(opt.dataset.value);
+      }
+      function open() {
+        if (btn.disabled) return;
+        closeAll(wrap);
+        wrap.classList.add('is-open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      function close() {
+        wrap.classList.remove('is-open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+      btn.addEventListener('click', e => { e.stopPropagation(); wrap.classList.contains('is-open') ? close() : open(); });
+
+      function setOpts(items) {
+        list.innerHTML = items.map(o =>
+          `<li class="cust-sel__opt${o.val === '' ? ' is-placeholder' : ''}" data-value="${o.val}">${o.label}</li>`
+        ).join('');
+        hidden.value = '';
+        lbl.textContent = items[0] ? items[0].label : '';
+        lbl.classList.add('is-placeholder');
+        wrap.classList.remove('is-disabled');
+        btn.disabled = false;
+        bindItems();
+      }
+      function disable(msg) {
+        list.innerHTML = `<li class="cust-sel__opt is-placeholder" data-value="">${msg}</li>`;
+        hidden.value = '';
+        lbl.textContent = msg;
+        lbl.classList.add('is-placeholder');
+        wrap.classList.add('is-disabled');
+        btn.disabled = true;
+        close();
+      }
+
+      bindItems();
+      return { getValue: () => hidden.value, setOpts, disable };
+    }
+
+    /* ── Custom Date Picker ── */
+    function makeDatePicker(wrapId, onPick) {
+      const wrap    = document.getElementById(wrapId);
+      const trigger = document.getElementById('datePickerBtn');
+      const lbl     = document.getElementById('datePickerLabel');
+      const cal     = document.getElementById('dateCal');
+      const hidden  = document.getElementById('apptDate');
+      const monthLbl = cal.querySelector('.cust-date__month-lbl');
+      const grid    = cal.querySelector('.cust-date__grid');
+      const prevBtn = cal.querySelector('.cust-date__prev');
+      const nextBtn = cal.querySelector('.cust-date__next');
+
+      const MONTHS = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      const WDAYS  = ['Su','Mo','Tu','We','Th','Fr','Sa'];
+
+      const today = new Date(); today.setHours(0, 0, 0, 0);
+      let view     = new Date(today.getFullYear(), today.getMonth(), 1);
+      let selected = null;
+
+      function render() {
+        monthLbl.textContent = MONTHS[view.getMonth()] + ' ' + view.getFullYear();
+        grid.innerHTML = '';
+        WDAYS.forEach(d => {
+          const el = document.createElement('div');
+          el.className = 'cust-date__wday'; el.textContent = d; grid.appendChild(el);
+        });
+        const first = new Date(view.getFullYear(), view.getMonth(), 1);
+        const last  = new Date(view.getFullYear(), view.getMonth() + 1, 0);
+        /* leading blanks */
+        for (let i = 0; i < first.getDay(); i++) {
+          const d = new Date(first); d.setDate(1 - (first.getDay() - i)); addDay(d, true);
+        }
+        /* month days */
+        for (let d = 1; d <= last.getDate(); d++) addDay(new Date(view.getFullYear(), view.getMonth(), d), false);
+        /* trailing blanks */
+        const trail = 6 - last.getDay();
+        for (let i = 1; i <= trail; i++) addDay(new Date(view.getFullYear(), view.getMonth() + 1, i), true);
+      }
+
+      function addDay(date, isOther) {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'cust-date__day';
+        btn.textContent = date.getDate();
+        if (isOther) { btn.classList.add('is-other-month'); btn.tabIndex = -1; }
+        else if (date < today) { btn.disabled = true; }
+        if (date.toDateString() === today.toDateString()) btn.classList.add('is-today');
+        if (selected && date.toDateString() === selected.toDateString()) btn.classList.add('is-selected');
+        if (!isOther && !btn.disabled) {
+          btn.addEventListener('click', e => { e.stopPropagation(); pick(date); });
+        }
+        grid.appendChild(btn);
+      }
+
+      function pick(date) {
+        selected = new Date(date);
+        const y = date.getFullYear();
+        const m = String(date.getMonth() + 1).padStart(2, '0');
+        const d = String(date.getDate()).padStart(2, '0');
+        hidden.value = y + '-' + m + '-' + d;
+        lbl.textContent = d + ' / ' + m + ' / ' + y;
+        lbl.classList.remove('is-placeholder');
+        close();
+        if (onPick) onPick(hidden.value);
+      }
+
+      function open() {
+        closeAll(wrap);
+        wrap.classList.add('is-open');
+        trigger.setAttribute('aria-expanded', 'true');
+        render();
+      }
+      function close() {
+        wrap.classList.remove('is-open');
+        trigger.setAttribute('aria-expanded', 'false');
+      }
+
+      trigger.addEventListener('click', e => { e.stopPropagation(); wrap.classList.contains('is-open') ? close() : open(); });
+      prevBtn.addEventListener('click', e => { e.stopPropagation(); view.setMonth(view.getMonth() - 1); render(); });
+      nextBtn.addEventListener('click', e => { e.stopPropagation(); view.setMonth(view.getMonth() + 1); render(); });
+
+      return { getValue: () => hidden.value };
+    }
+
+    /* ── Init controls ── */
+    const deptCS    = makeCustSel('deptSel',    onDeptChange);
+    const doctorCS  = makeCustSel('doctorSel',  () => { updateSummary(); updateSteps(); });
+    const speciesCS = makeCustSel('speciesSel', () => {});
+    const dateCS    = makeDatePicker('datePicker', () => { updateSummary(); updateSteps(); });
+
+    function onDeptChange(val) {
+      if (val && DOCTORS_BY_DEPT[val]) {
+        doctorCS.setOpts([{ val: '', label: 'Choose a doctor' }, ...DOCTORS_BY_DEPT[val]]);
+      } else {
+        doctorCS.disable('Choose a department first');
+      }
+      updateSummary(); updateSteps();
+    }
+
+    /* ── Time slots ── */
+    const slotGrid    = document.getElementById('timeslotGrid');
+    const selectedSlot = document.getElementById('selectedSlot');
+    const steps       = document.querySelectorAll('.step');
+
+    slotGrid.addEventListener('click', e => {
+      const btn = e.target.closest('.timeslot');
+      if (!btn || btn.classList.contains('is-unavailable')) return;
+      slotGrid.querySelectorAll('.timeslot').forEach(t => t.classList.remove('is-selected'));
+      btn.classList.add('is-selected');
+      selectedSlot.value = btn.textContent.trim();
+      updateSummary(); updateSteps();
+    });
+
+    document.getElementById('petName').addEventListener('input', () => { updateSummary(); updateSteps(); });
+
+    /* ── Summary / steps ── */
+    function updateSummary() {
+      const dept   = document.getElementById('department').value;
+      const doctor = document.getElementById('doctor').value;
+      const date   = document.getElementById('apptDate').value;
+      document.getElementById('sumDept').textContent   = dept   ? (DEPT_FULL[dept] || dept) : '—';
+      document.getElementById('sumDoctor').textContent = doctor || '—';
+      document.getElementById('sumDate').textContent   = date   || '—';
+      document.getElementById('sumTime').textContent   = selectedSlot.value || '—';
+      document.getElementById('sumPet').textContent    = document.getElementById('petName').value || '—';
+    }
+
+    function updateSteps() {
+      const filled = [
+        document.getElementById('department').value,
+        document.getElementById('doctor').value,
+        (document.getElementById('apptDate').value && selectedSlot.value),
+        document.getElementById('petName').value,
+      ];
+      steps.forEach((step, i) => {
+        step.classList.toggle('is-done',   !!filled[i]);
+        step.classList.toggle('is-active', !filled[i] && (i === 0 || !!filled[i - 1]));
+      });
+    }
+
+    /* ── Submit ── */
+    document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const dept   = document.getElementById('department').value;
+      const doctor = document.getElementById('doctor').value;
+      const date   = document.getElementById('apptDate').value;
+      const slot   = selectedSlot.value;
+      const textValid = Array.from(this.querySelectorAll('.form-control[required]'))
+        .every(f => StacklyValidate.validateField(f));
+      if (!dept || !doctor) {
+        alert('Please select a department and doctor.');
+      } else if (!date) {
+        alert('Please select a preferred date.');
+      } else if (!slot) {
+        alert('Please select an available time slot.');
+      } else if (textValid) {
+        document.getElementById('appointmentSuccess').style.display = 'block';
+        updateSummary();
+      }
+    });
+
+    updateSteps();
+  })();
   </script>
 </body>
 </html>

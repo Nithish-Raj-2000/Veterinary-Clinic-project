@@ -50,14 +50,34 @@
     const sections = document.querySelectorAll('.dash-section');
     if (!navLinks.length) return;
 
+    /* Activate a panel by its ID and optionally update the topbar title */
+    function activatePanel(targetId) {
+      const link = document.querySelector(`.dash-nav [data-target="${targetId}"]`);
+      if (!link) return;
+      navLinks.forEach(l => l.classList.remove('active'));
+      link.classList.add('active');
+      sections.forEach(s => s.classList.toggle('active', s.id === targetId));
+      const titleEl = document.getElementById('dashTitle');
+      if (titleEl) titleEl.textContent = link.textContent.trim();
+    }
+
+    /* On page load: restore the panel the user was on before navigating to 404.
+       history.replaceState writes the panel ID into the URL hash on every
+       sidebar click, so history.back() on the 404 page returns here with the
+       correct hash still in the URL. */
+    const hash = window.location.hash.slice(1);
+    if (hash && document.getElementById(hash)) {
+      activatePanel(hash);
+    }
+
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
         e.preventDefault();
         const target = link.getAttribute('data-target');
-        navLinks.forEach(l => l.classList.remove('active'));
-        link.classList.add('active');
-        sections.forEach(s => s.classList.toggle('active', s.id === target));
-        document.getElementById('dashTitle') && (document.getElementById('dashTitle').textContent = link.textContent.trim());
+        /* replaceState updates the URL without adding a new history entry,
+           so panel switches don't pollute the back-button stack. */
+        history.replaceState(null, '', '#' + target);
+        activatePanel(target);
         closeMobileSidebar();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
@@ -70,14 +90,16 @@
   }
 
   function initMobileSidebar() {
-    const toggle = document.getElementById('sidebarToggle');
-    const sidebar = document.querySelector('.dash-sidebar');
-    const overlay = document.getElementById('dashOverlay');
+    const toggle   = document.getElementById('sidebarToggle');
+    const closeBtn = document.getElementById('sidebarClose');
+    const sidebar  = document.querySelector('.dash-sidebar');
+    const overlay  = document.getElementById('dashOverlay');
     if (!toggle || !sidebar) return;
     toggle.addEventListener('click', () => {
       sidebar.classList.add('is-open');
       overlay?.classList.add('is-open');
     });
+    closeBtn?.addEventListener('click', closeMobileSidebar);
     overlay?.addEventListener('click', closeMobileSidebar);
   }
 

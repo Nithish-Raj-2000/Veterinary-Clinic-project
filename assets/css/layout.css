@@ -232,6 +232,7 @@
   border-radius: var(--radius-sm) 0 0 var(--radius-sm);
 }
 .newsletter-form input::placeholder { color: rgba(255,255,255,0.4); }
+.newsletter-form input.is-error { border-color: var(--color-error); }
 .newsletter-form button {
   border: none;
   padding: 0 18px;
@@ -286,8 +287,8 @@
 @media (max-width: 900px) {
   .main-nav {
     position: fixed;
-    top: 0; right: -100%;
-    width: min(360px, 86%);
+    top: 0; right: -100vw;
+    width: min(360px, 86vw);
     height: 100vh;
     background: var(--color-navy);
     flex-direction: column;
@@ -296,6 +297,7 @@
     gap: var(--space-lg);
     transition: right var(--t-base);
     overflow-y: auto;
+    overflow-x: hidden;
   }
   .main-nav.is-open { right: 0; box-shadow: var(--shadow-lg); }
   .nav-list { flex-direction: column; align-items: flex-start; gap: 1.25rem; width: 100%; }
@@ -312,7 +314,8 @@
   .mega-menu a { color: rgba(255,255,255,0.8) !important; }
   .mega-menu a:hover { background: rgba(255,255,255,0.08); color: var(--color-gold) !important; }
   .nav-toggle { display: flex; }
-  .nav-cta { width: 100%; }
+  .nav-cta { width: 100%; flex-direction: column; align-items: stretch; gap: 12px; }
+  .nav-cta .btn { width: 100%; text-align: center; justify-content: center; }
 }
 
 @media (max-width: 768px) {

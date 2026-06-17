@@ -134,8 +134,7 @@
 .doctor-card .doctor-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.55s var(--ease); }
 .doctor-card:hover .doctor-photo img { transform: scale(1.08); }
 /* Overlay CTA on hover */
-.doctor-card .doctor-photo::after {
-  content: 'Book Appointment →';
+.doctor-photo .book-overlay-btn {
   position: absolute; bottom: 0; left: 0; right: 0;
   background: linear-gradient(0deg, rgba(13,148,136,0.96) 0%, transparent 100%);
   color: #fff;
@@ -143,10 +142,15 @@
   font-weight: 700;
   font-size: 0.88rem;
   padding: 28px 16px 14px;
+  text-align: center;
+  display: block;
   transform: translateY(100%);
   transition: transform 0.35s var(--ease);
 }
-.doctor-card:hover .doctor-photo::after { transform: translateY(0); }
+.doctor-card:hover .book-overlay-btn,
+.doctor-detail-card:hover .book-overlay-btn { transform: translateY(0); }
+.doctor-detail-card .doctor-photo { height: 260px; overflow: hidden; position: relative; }
+.doctor-detail-card:hover .doctor-photo img { transform: scale(1.08); }
 .doctor-card .doctor-info { padding: var(--space-md); }
 .doctor-card .doctor-info span { color: var(--color-teal); font-weight: 600; font-size: 0.85rem; }
 .doctor-card .doctor-social { display: flex; justify-content: center; gap: 8px; margin-top: var(--space-xs); }
@@ -248,12 +252,26 @@
 }
 .form-control {
   width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
   padding: 14px 16px;
   border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   background: var(--color-card);
   color: var(--color-body);
   transition: border-color var(--t-fast), box-shadow var(--t-fast);
+}
+select.form-control {
+  appearance: none;
+  -webkit-appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23374151' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  padding-right: 36px;
+  cursor: pointer;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .form-control:focus {
   border-color: var(--color-teal);
@@ -293,7 +311,8 @@
 /* Auth card */
 .auth-wrap {
   padding-top: 72px;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
@@ -304,9 +323,6 @@
   justify-content: center;
   padding: var(--space-2xl);
   color: #fff;
-  position: sticky;
-  top: 72px;
-  height: calc(100vh - 72px);
   overflow: hidden;
 }
 .auth-visual::before {
@@ -316,27 +332,16 @@
 }
 .auth-visual h2 { color: #fff; position: relative; }
 .auth-visual .auth-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
   margin-bottom: var(--space-lg);
   text-decoration: none;
 }
 .auth-visual .auth-brand img {
-  width: 48px; height: 48px;
-}
-.auth-visual .auth-brand span {
-  font-family: var(--font-heading);
-  font-size: 0.6rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  color: var(--color-gold);
-  line-height: 1;
+  height: 48px;
+  width: auto;
 }
 .auth-form-side {
   display: flex; align-items: flex-start; justify-content: center;
   padding: var(--space-lg);
-  height: calc(100vh - 72px);
   overflow-y: auto;
 }
 .auth-back-btn {
@@ -511,7 +516,7 @@
   box-shadow: 0 0 0 2px rgba(13,148,136,0.3);
 }
 
-.dash-main { background: var(--color-bg); }
+.dash-main { background: var(--color-bg); min-width: 0; overflow-x: hidden; }
 .dash-topbar {
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--space-sm) var(--space-md);
@@ -569,9 +574,9 @@
 }
 
 @media (max-width: 900px) {
-  .auth-wrap { grid-template-columns: 1fr; min-height: auto; }
+  .auth-wrap { grid-template-columns: 1fr; height: auto; overflow: visible; }
   .auth-visual { display: none; }
-  .auth-form-side { height: auto; overflow-y: visible; padding-top: var(--space-lg); }
+  .auth-form-side { overflow-y: visible; padding-top: var(--space-lg); }
   .auth-form-side .auth-card { margin: 0; padding: 0; }
   .dash-shell { grid-template-columns: 1fr; }
   .dash-sidebar { position: fixed; left: -280px; width: 270px; z-index: 1200; transition: left var(--t-base); }
@@ -584,6 +589,9 @@
 }
 
 @media (max-width: 480px) {
+  .form-group { max-width: 100%; }
+  select.form-control { max-width: 100%; font-size: 0.9rem; }
+  input[type="date"].form-control { max-width: 100%; font-size: 0.9rem; }
   .stats-row { grid-template-columns: 1fr 1fr; }
   .masonry { grid-template-columns: 1fr 1fr; }
   .kpi-grid { grid-template-columns: 1fr; }

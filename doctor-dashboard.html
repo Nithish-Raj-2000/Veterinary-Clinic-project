@@ -26,6 +26,7 @@
             <span class="brand-tagline">VETERINARY CLINIC</span>
           </div>
         </a>
+        <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close sidebar">&#x2715;</button>
       </div>
       <nav class="dash-nav" aria-label="Doctor navigation">
         <a href="#" data-target="panel-today" class="active">📅 Today's Appointments</a>
@@ -36,7 +37,7 @@
         <a href="#" data-target="panel-profile">👤 Profile</a>
       </nav>
       <div class="dash-logout-wrapper">
-        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Sign Out</a>
+        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Log Out</a>
       </div>
     </aside>
     <div class="dash-overlay" id="dashOverlay"></div>
@@ -136,7 +137,7 @@
 
         <!-- ============ TREATMENT NOTES ============ -->
         <section class="dash-section" id="panel-notes">
-          <div class="dash-section-head"><h2>Treatment Notes</h2><button class="btn btn-primary btn-sm">+ New Note</button></div>
+          <div class="dash-section-head"><h2>Treatment Notes</h2><a href="404.html" class="btn btn-primary btn-sm">+ New Note</a></div>
           <div class="timeline">
             <div class="timeline-item"><span>Jun 02, 2026 — Milo</span><h4>Annual Wellness Exam</h4><p>Weight stable at 4.2kg. Bloodwork within normal range. Recommended dental cleaning at next visit.</p></div>
             <div class="timeline-item"><span>May 28, 2026 — Rex</span><h4>Limping — Left Hind Leg</h4><p>Mild soft-tissue strain suspected. Prescribed rest and anti-inflammatory for 7 days. Recheck if no improvement.</p></div>
@@ -147,7 +148,7 @@
 
         <!-- ============ PRESCRIPTIONS ============ -->
         <section class="dash-section" id="panel-prescriptions">
-          <div class="dash-section-head"><h2>Prescriptions</h2><button class="btn btn-primary btn-sm">+ New Prescription</button></div>
+          <div class="dash-section-head"><h2>Prescriptions</h2><a href="404.html" class="btn btn-primary btn-sm">+ New Prescription</a></div>
           <div style="overflow-x:auto;">
             <table class="data-table">
               <thead><tr><th>Patient</th><th>Medication</th><th>Dosage</th><th>Duration</th><th>Status</th></tr></thead>
@@ -191,7 +192,7 @@
               <div class="form-group"><label for="docName">Full Name</label><input type="text" id="docName" class="form-control" value="Dr. Marcus Lee"></div>
               <div class="form-group"><label for="docEmail">Email Address</label><input type="email" id="docEmail" class="form-control" value="marcus.lee@stacklyvet.com"></div>
               <div class="form-group"><label for="docSchedule">Working Hours</label><input type="text" id="docSchedule" class="form-control" value="Tue–Sat, 10:00 AM – 6:00 PM"></div>
-              <button type="button" class="btn btn-primary">Save Changes</button>
+              <a href="404.html" class="btn btn-primary">Save Changes</a>
             </div>
           </div>
         </section>

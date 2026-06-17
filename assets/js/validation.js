@@ -82,8 +82,8 @@ const StacklyValidate = (function () {
         break;
       case 'phone': {
         const digits = value.replace(/\D/g, '');
-        if (!PHONE_RE.test(value) || digits.length < 7 || digits.length > 13) {
-          setState(group, false, 'Enter a valid phone number (7–13 digits).');
+        if (!PHONE_RE.test(value) || digits.length !== 10) {
+          setState(group, false, 'Enter a valid 10-digit phone number.');
           return false;
         }
         break;
@@ -102,9 +102,8 @@ const StacklyValidate = (function () {
       }
       case 'name': {
         const NAME_RE = /^[a-zA-ZÀ-ÿ'.\- ]+$/;
-        const parts = value.trim().split(/\s+/);
-        if (!NAME_RE.test(value) || parts.length < 2 || parts.some(p => p.replace(/['.\-]/g, '').length < 2)) {
-          setState(group, false, 'Enter your full name (first and last name, letters only).');
+        if (!NAME_RE.test(value) || value.trim().replace(/['.\-]/g, '').length < 2) {
+          setState(group, false, 'Enter a valid name (letters only).');
           return false;
         }
         break;

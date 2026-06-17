@@ -26,6 +26,7 @@
             <span class="brand-tagline">VETERINARY CLINIC</span>
           </div>
         </a>
+        <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close sidebar">&#x2715;</button>
       </div>
       <nav class="dash-nav" aria-label="Admin navigation">
         <a href="#" data-target="panel-overview" class="active">📊 Analytics Overview</a>
@@ -37,7 +38,7 @@
         <a href="#" data-target="panel-settings">⚙️ Settings</a>
       </nav>
       <div class="dash-logout-wrapper">
-        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Sign Out</a>
+        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Log Out</a>
       </div>
     </aside>
     <div class="dash-overlay" id="dashOverlay"></div>
@@ -138,7 +139,7 @@
 
         <!-- ============ DOCTORS MANAGEMENT ============ -->
         <section class="dash-section" id="panel-doctors">
-          <div class="dash-section-head"><h2>Doctors Management</h2><button class="btn btn-primary btn-sm">+ Add Doctor</button></div>
+          <div class="dash-section-head"><h2>Doctors Management</h2><a href="404.html" class="btn btn-primary btn-sm">+ Add Doctor</a></div>
           <div style="overflow-x:auto;">
             <table class="data-table">
               <thead><tr><th>Doctor</th><th>Department</th><th>Experience</th><th>Status</th><th>Action</th></tr></thead>
@@ -155,7 +156,7 @@
 
         <!-- ============ PATIENTS MANAGEMENT ============ -->
         <section class="dash-section" id="panel-patients">
-          <div class="dash-section-head"><h2>Patients Management</h2><button class="btn btn-primary btn-sm">+ Add Patient</button></div>
+          <div class="dash-section-head"><h2>Patients Management</h2><a href="404.html" class="btn btn-primary btn-sm">+ Add Patient</a></div>
           <div style="overflow-x:auto;">
             <table class="data-table">
               <thead><tr><th>Owner</th><th>Pet</th><th>Species</th><th>Last Visit</th><th>Action</th></tr></thead>
@@ -172,7 +173,7 @@
 
         <!-- ============ APPOINTMENTS ============ -->
         <section class="dash-section" id="panel-appointments">
-          <div class="dash-section-head"><h2>Appointments</h2><button class="btn btn-primary btn-sm">+ New Appointment</button></div>
+          <div class="dash-section-head"><h2>Appointments</h2><a href="404.html" class="btn btn-primary btn-sm">+ New Appointment</a></div>
           <div style="overflow-x:auto;">
             <table class="data-table">
               <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
@@ -189,7 +190,7 @@
 
         <!-- ============ BLOG MANAGEMENT ============ -->
         <section class="dash-section" id="panel-blog">
-          <div class="dash-section-head"><h2>Blog Management</h2><button class="btn btn-primary btn-sm">+ New Post</button></div>
+          <div class="dash-section-head"><h2>Blog Management</h2><a href="404.html" class="btn btn-primary btn-sm">+ New Post</a></div>
           <div style="overflow-x:auto;">
             <table class="data-table">
               <thead><tr><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Action</th></tr></thead>
@@ -238,7 +239,7 @@
                 <option>None</option>
               </select>
             </div>
-            <button type="button" class="btn btn-primary">Save Changes</button>
+            <a href="404.html" class="btn btn-primary">Save Changes</a>
           </div>
         </section>
 

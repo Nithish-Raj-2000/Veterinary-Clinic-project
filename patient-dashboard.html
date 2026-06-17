@@ -30,6 +30,7 @@
             <span class="brand-tagline">VETERINARY CLINIC</span>
           </div>
         </a>
+        <button class="sidebar-close-btn" id="sidebarClose" aria-label="Close sidebar">&#x2715;</button>
       </div>
       <nav class="dash-nav" aria-label="Patient navigation">
         <a href="#" data-target="panel-pets" class="active">🐾 Pet Profiles</a>
@@ -41,7 +42,7 @@
         <a href="#" data-target="panel-billing">💳 Billing</a>
       </nav>
       <div class="dash-logout-wrapper">
-        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Sign Out</a>
+        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Log Out</a>
       </div>
     </aside>
     <div class="dash-overlay" id="dashOverlay"></div>
@@ -92,16 +93,16 @@
 
         <!-- ============ PET PROFILES ============ -->
         <section class="dash-section active" id="panel-pets">
-          <div class="dash-section-head"><h2>My Pets</h2><button class="btn btn-primary btn-sm">+ Add Pet</button></div>
+          <div class="dash-section-head"><h2>My Pets</h2><a href="404.html" class="btn btn-primary btn-sm">+ Add Pet</a></div>
           <div class="grid-3">
             <div class="card pet-profile-card" data-animate="fade-up">
-              <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=300&h=300&q=80" alt="Milo the cat">
+              <img src="Images/webp/dental-cat.webp" alt="Milo the cat">
               <h3>Milo</h3>
               <span class="badge">Cat · Domestic Shorthair</span>
               <p style="margin-top:8px;font-size:0.85rem;">Age 4 · 4.2kg · Last visit Jun 02, 2026</p>
             </div>
             <div class="card pet-profile-card" data-animate="fade-up" data-delay="100">
-              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=300&h=300&q=80" alt="Bella the dog">
+              <img src="Images/webp/hero-dog.webp" alt="Bella the dog">
               <h3>Bella</h3>
               <span class="badge">Dog · Beagle</span>
               <p style="margin-top:8px;font-size:0.85rem;">Age 2 · 11.5kg · Last visit Apr 18, 2026</p>
@@ -111,7 +112,7 @@
 
         <!-- ============ UPCOMING APPOINTMENTS ============ -->
         <section class="dash-section" id="panel-upcoming">
-          <div class="dash-section-head"><h2>Upcoming Appointments</h2><a href="appointments.html" class="btn btn-primary btn-sm">+ Book New</a></div>
+          <div class="dash-section-head"><h2>Upcoming Appointments</h2><a href="404.html" class="btn btn-primary btn-sm">+ Book New</a></div>
           <div style="overflow-x:auto;">
             <table class="data-table">
               <thead><tr><th>Pet</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>

@@ -137,16 +137,101 @@
   color: rgba(255,255,255,0.65); font-weight: 500; white-space: nowrap;
 }
 
+/* ── Sidebar close (✕) button ── */
+.dash-brand { display: flex; align-items: center; justify-content: center; }
+
+.sidebar-close-btn {
+  display: none;
+  background: none; border: none;
+  color: rgba(255,255,255,0.65); font-size: 1.2rem;
+  cursor: pointer; padding: 7px 9px; border-radius: var(--radius-sm);
+  line-height: 1; flex-shrink: 0;
+  transition: color var(--t-fast), background var(--t-fast);
+}
+.sidebar-close-btn:hover { color: #fff; background: rgba(255,255,255,0.14); }
+
+/* Grid definitions for dashboard pages (layout.css is not loaded on dashboard pages) */
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--space-md); }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-md); }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-md); }
+
+/* ── 900 px — sidebar becomes an off-canvas drawer ── */
 @media (max-width: 900px) {
   .sidebar-toggle-btn { display: inline-flex; }
-  .dash-hero { flex-direction: column; align-items: flex-start; }
-  .dash-hero-right { justify-content: flex-start; }
+  .sidebar-close-btn { display: flex; align-items: center; justify-content: center; }
+  .dash-brand { justify-content: space-between; }
+
+  /* Topbar */
+  .dash-topbar { padding: 10px 14px; gap: 8px; }
+  .dash-topbar-right { gap: 12px; }
+  .topbar-user .user-name {
+    max-width: 130px;
+    overflow: hidden; text-overflow: ellipsis; white-space: nowrap;
+  }
+
+  /* Content */
+  .dash-content { padding: 16px; }
+
+  /* Hero */
+  .dash-hero { flex-direction: column; align-items: flex-start; gap: 14px; }
+  .dash-hero-right {
+    width: 100%; justify-content: flex-start; flex-wrap: nowrap;
+  }
+  .dash-hero-stat { flex: 1; min-width: 0; }
+
+  /* Grids — 2 columns at tablet */
+  .grid-2 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
 }
+
+/* ── 600 px — single column mobile ── */
 @media (max-width: 600px) {
-  .kpi-grid { grid-template-columns: 1fr; }
-  .donut-wrap { flex-direction: column; }
-  .notif-dropdown { width: calc(100vw - 32px); right: 16px; }
-  .dash-hero { padding: 18px 16px; }
-  .dash-hero-title { font-size: 1.2rem; }
-  .dash-hero-stat { min-width: 70px; padding: 8px 10px; }
+  /* Topbar — hide name/role, keep only avatar + bell */
+  .dash-topbar { padding: 10px 12px; }
+  .dash-topbar-right { gap: 8px; }
+  .topbar-user > div:last-child { display: none; }   /* hide name + role text */
+  .user-avatar-initial { width: 34px; height: 34px; font-size: 0.88rem; }
+  .notif-btn { font-size: 1.1rem; }
+  .notif-badge { font-size: 0.58rem; padding: 2px 4px; }
+  .notif-dropdown { width: calc(100vw - 24px); right: 12px; left: auto; }
+
+  /* Content */
+  .dash-content { padding: 12px; }
+
+  /* Hero */
+  .dash-hero { padding: 14px 12px; gap: 12px; }
+  .dash-hero-eyebrow { font-size: 0.72rem; }
+  .dash-hero-title { font-size: 1.1rem; }
+  .dash-hero-sub { font-size: 0.78rem; }
+  .dash-hero-right { gap: 6px; }
+  .dash-hero-stat { padding: 8px 8px; min-width: 0; }
+  .dash-hero-stat-val { font-size: 1rem; }
+  .dash-hero-stat-label { font-size: 0.6rem; white-space: normal; text-align: center; }
+
+  /* Section head — stack button below title */
+  .dash-section-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .dash-section-head h2 { font-size: 1.15rem; }
+
+  /* Grids — single column */
+  .grid-2, .grid-3, .grid-4 { grid-template-columns: 1fr; gap: var(--space-sm); }
+
+  /* KPI — 2 per row on mobile */
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); gap: var(--space-sm); }
+  .kpi-card { padding: 14px 12px; gap: 10px; }
+  .kpi-card .kpi-icon { width: 42px; height: 42px; font-size: 1.1rem; }
+  .kpi-card .kpi-value { font-size: 1.3rem; }
+
+  /* Charts */
+  .bar-chart { gap: 8px; height: 180px; }
+  .donut-wrap { flex-direction: column; align-items: center; }
+  .mini-calendar { gap: 2px; font-size: 0.72rem; }
+  .mini-calendar .cal-day { padding: 5px 0; }
+
+  /* Timeline */
+  .timeline { padding-left: 22px; }
+  .timeline-item::before { left: -22px; width: 12px; height: 12px; }
+
+  /* Settings form */
+  .settings-form { max-width: 100%; }
 }

@@ -100,11 +100,13 @@
         <div class="footer-col">
           <h4>Newsletter</h4>
           <p style="font-size:0.88rem;color:rgba(255,255,255,0.6);">Subscribe for pet health tips and clinic updates.</p>
-          <form class="newsletter-form" id="newsletterForm">
+          <form class="newsletter-form" id="newsletterForm" novalidate>
             <label class="sr-only" for="newsletterEmail">Email address</label>
             <input type="email" id="newsletterEmail" placeholder="Your email" required>
             <button type="submit" aria-label="Subscribe">→</button>
           </form>
+          <p id="newsletterError" style="display:none;color:var(--color-error);font-size:0.82rem;margin-top:6px;">⚠ Enter a valid email (e.g. you@example.com).</p>
+          <p id="newsletterSuccess" style="display:none;color:var(--color-success);font-size:0.82rem;margin-top:6px;">✓ You're subscribed!</p>
           <a href="404.html" class="footer-contact-link" style="margin-top:10px;">📞 +1 (800) 555-0199</a>
           <a href="404.html" class="footer-contact-link">✉️ care@stacklyvet.com</a>
         </div>
@@ -163,13 +165,31 @@
 
     const newsletterForm = document.getElementById('newsletterForm');
     if (newsletterForm) {
+      const EMAIL_RE = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/;
+      const input = document.getElementById('newsletterEmail');
+      const errorEl = document.getElementById('newsletterError');
+      const successEl = document.getElementById('newsletterSuccess');
+
+      input.addEventListener('input', () => {
+        if (input.classList.contains('is-error')) {
+          input.classList.remove('is-error');
+          errorEl.style.display = 'none';
+        }
+      });
+
       newsletterForm.addEventListener('submit', (e) => {
         e.preventDefault();
-        const input = document.getElementById('newsletterEmail');
-        if (input.checkValidity()) {
-          input.value = '';
-          input.placeholder = 'Subscribed! 🎉';
+        const value = input.value.trim();
+        if (!EMAIL_RE.test(value)) {
+          input.classList.add('is-error');
+          errorEl.style.display = 'block';
+          successEl.style.display = 'none';
+          return;
         }
+        input.classList.remove('is-error');
+        errorEl.style.display = 'none';
+        successEl.style.display = 'block';
+        input.value = '';
       });
     }
 
