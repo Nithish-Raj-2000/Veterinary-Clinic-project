@@ -1,0 +1,60 @@
+/* ==========================================================================
+   STACKLY Veterinary Clinic — Design Tokens
+   ========================================================================== */
+:root {
+  /* Colors */
+  --color-navy: #0F172A;
+  --color-teal: #0D9488;
+  --color-emerald: #10B981;
+  --color-gold: #D4A017;
+  --color-bg: #FAFCFF;
+  --color-bg-alt: #F0FDF4;
+  --color-card: #FFFFFF;
+  --color-heading: #111827;
+  --color-body: #374151;
+  --color-border: #E5E7EB;
+  --color-success: #22C55E;
+  --color-error: #EF4444;
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, var(--color-navy) 0%, var(--color-teal) 100%);
+  --gradient-gold: linear-gradient(135deg, var(--color-gold) 0%, #f0c14b 100%);
+  --gradient-emerald: linear-gradient(135deg, var(--color-teal) 0%, var(--color-emerald) 100%);
+
+  /* Typography */
+  --font-heading: 'Poppins', 'Inter', sans-serif;
+  --font-body: 'Inter', 'Nunito', sans-serif;
+  --font-accent: 'Nunito', sans-serif;
+
+  /* Spacing scale */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 1.5rem;
+  --space-lg: 2.5rem;
+  --space-xl: 4rem;
+  --space-2xl: 6rem;
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.06);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.08);
+  --shadow-lg: 0 20px 48px rgba(15, 23, 42, 0.12);
+  --shadow-glow: 0 0 32px rgba(13, 148, 136, 0.3);
+  --shadow-gold: 0 0 32px rgba(212, 160, 23, 0.3);
+  --shadow-card: 0 24px 60px rgba(15, 23, 42, 0.14);
+
+  /* Transitions */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 0.2s var(--ease);
+  --t-base: 0.35s var(--ease);
+  --t-slow: 0.6s var(--ease);
+
+  /* Layout */
+  --header-height: 84px;
+  --container-width: 1280px;
+}

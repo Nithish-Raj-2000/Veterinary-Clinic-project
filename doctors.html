@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Doctors | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="Meet STACKLY Veterinary Clinic's board-certified doctors — their specializations, experience, certifications, and schedules.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    .doctor-detail-card { display: flex; flex-direction: column; }
+    .doctor-detail-card .doctor-meta { padding: 0 var(--space-md) var(--space-md); font-size: 0.85rem; color: var(--color-body); display: flex; flex-direction: column; gap: 6px; }
+    .doctor-detail-card .doctor-meta span strong { color: var(--color-heading); }
+    .doctor-bio { font-size: 0.85rem; color: var(--color-body); margin: 8px 0 0; line-height: 1.5; }
+  </style>
+</head>
+<body data-page="doctors">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Meet Our Doctors</h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span>/</span><span>Doctors</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="section-head" data-animate="fade-up">
+          <span class="eyebrow">Board-Certified Specialists</span>
+          <h2>Experienced Hands, Compassionate Hearts</h2>
+          <p>Every doctor at STACKLY combines clinical excellence with a gentle approach — because trust is part of the treatment.</p>
+        </div>
+
+        <div data-animate="zoom-in" style="margin-bottom:var(--space-xl);">
+          <img src="https://images.unsplash.com/photo-1538108149393-fbbd81895907?auto=format&fit=crop&w=1200&h=420&q=80" alt="STACKLY veterinary team standing together in the clinic" loading="lazy" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);" width="1200" height="420">
+        </div>
+
+        <div class="filter-row" id="deptFilter">
+          <button class="filter-btn active" data-filter="all">All Departments</button>
+          <button class="filter-btn" data-filter="surgery">Surgery</button>
+          <button class="filter-btn" data-filter="medicine">Internal Medicine</button>
+          <button class="filter-btn" data-filter="dermatology">Dermatology</button>
+          <button class="filter-btn" data-filter="emergency">Emergency</button>
+          <button class="filter-btn" data-filter="dentistry">Dentistry</button>
+          <button class="filter-btn" data-filter="exotic">Exotic</button>
+          <button class="filter-btn" data-filter="general">General Practice</button>
+        </div>
+
+        <div class="grid-4" id="doctorsGrid">
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-dept="surgery">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Olivia Bennett" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Olivia Bennett</h3><span>Chief Veterinary Surgeon</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 18 years</span>
+              <span><strong>Certifications:</strong> DVM, ACVS</span>
+              <span><strong>Schedule:</strong> Mon–Fri, 9am–4pm</span>
+              <p class="doctor-bio">Leads our surgical department with a focus on minimally invasive orthopedic and soft-tissue procedures.</p>
+            </div>
+          </article>
+
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="100" data-dept="medicine">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Marcus Lee" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Marcus Lee</h3><span>Internal Medicine</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 14 years</span>
+              <span><strong>Certifications:</strong> DVM, DACVIM</span>
+              <span><strong>Schedule:</strong> Tue–Sat, 10am–6pm</span>
+              <p class="doctor-bio">Specializes in diagnosing complex, chronic conditions affecting senior pets and managing long-term care plans.</p>
+            </div>
+          </article>
+
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="200" data-dept="dermatology">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Priya Nandan" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Priya Nandan</h3><span>Dermatology &amp; Allergy</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 11 years</span>
+              <span><strong>Certifications:</strong> DVM, Dip-ACVD</span>
+              <span><strong>Schedule:</strong> Mon, Wed, Fri 9am–3pm</span>
+              <p class="doctor-bio">Treats chronic skin conditions, food allergies, and ear infections using evidence-based dermatology protocols.</p>
+            </div>
+          </article>
+
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="300" data-dept="emergency">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Ethan Cole" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Ethan Cole</h3><span>Emergency &amp; Critical Care</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 9 years</span>
+              <span><strong>Certifications:</strong> DVM, DACVECC</span>
+              <span><strong>Schedule:</strong> 24/7 Rotating Shift</span>
+              <p class="doctor-bio">Heads our overnight critical care unit, stabilizing trauma and high-risk cases around the clock.</p>
+            </div>
+          </article>
+
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-dept="dentistry">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Grace Tanaka" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Grace Tanaka</h3><span>Dentistry</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 12 years</span>
+              <span><strong>Certifications:</strong> DVM, Dip-AVDC</span>
+              <span><strong>Schedule:</strong> Mon–Thu, 8am–2pm</span>
+              <p class="doctor-bio">Focuses on preventive dentistry and oral surgery, helping pets avoid painful dental disease.</p>
+            </div>
+          </article>
+
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="100" data-dept="surgery">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Noah Whitfield" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Noah Whitfield</h3><span>Orthopedic Surgery</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 16 years</span>
+              <span><strong>Certifications:</strong> DVM, ACVS</span>
+              <span><strong>Schedule:</strong> Wed–Sun, 9am–5pm</span>
+              <p class="doctor-bio">Performs advanced joint and fracture repair surgery, including ACL and hip dysplasia correction.</p>
+            </div>
+          </article>
+
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="200" data-dept="exotic">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Layla Haddad" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Layla Haddad</h3><span>Exotic &amp; Avian Medicine</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 10 years</span>
+              <span><strong>Certifications:</strong> DVM, ABVP-Avian</span>
+              <span><strong>Schedule:</strong> Tue, Thu, Sat 10am–4pm</span>
+              <p class="doctor-bio">Cares for birds, reptiles, and small mammals with specialized handling and species-specific protocols.</p>
+            </div>
+          </article>
+
+          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="300" data-dept="general">
+            <div class="doctor-photo"><img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&crop=faces&w=400&h=500&q=80" alt="Dr. Samuel Brooks" loading="lazy" width="400" height="500"></div>
+            <div class="doctor-info"><h3>Dr. Samuel Brooks</h3><span>General Practice</span></div>
+            <div class="doctor-meta">
+              <span><strong>Experience:</strong> 7 years</span>
+              <span><strong>Certifications:</strong> DVM</span>
+              <span><strong>Schedule:</strong> Mon–Fri, 8am–4pm</span>
+              <p class="doctor-bio">Your pet's first point of contact — handling wellness exams, minor illness, and referrals to specialists.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="appointment-cta" aria-label="Book an appointment">
+      <div class="container cta-inner" data-animate="zoom-in">
+        <h2>Found the Right Specialist?</h2>
+        <p>Book directly with your preferred doctor in just a few clicks.</p>
+        <a href="appointments.html" class="btn btn-gold">Book Appointment</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById('deptFilter').addEventListener('click', function (e) {
+      const btn = e.target.closest('.filter-btn');
+      if (!btn) return;
+      this.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.getAttribute('data-filter');
+      document.querySelectorAll('#doctorsGrid .doctor-detail-card').forEach(card => {
+        const match = filter === 'all' || card.getAttribute('data-dept') === filter;
+        card.style.display = match ? '' : 'none';
+      });
+    });
+  </script>
+</body>
+</html>

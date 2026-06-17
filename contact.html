@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="Contact STACKLY Veterinary Clinic — clinic hours, emergency contact, location map, and our contact form.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-lg); }
+
+    /* Contact info cards */
+    .contact-info-cards { gap: var(--space-md); }
+    .contact-info-card {
+      background: #fff;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg) var(--space-md);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      box-shadow: 0 4px 16px rgba(15,23,42,0.06);
+      transition: transform 0.3s var(--ease), box-shadow 0.3s var(--ease), border-color 0.3s var(--ease);
+    }
+    .contact-info-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(15,23,42,0.12);
+      border-color: var(--color-teal);
+    }
+    .ci-icon {
+      width: 64px; height: 64px;
+      border-radius: var(--radius-full);
+      display: grid; place-items: center;
+      font-size: 1.6rem;
+      flex-shrink: 0;
+      transition: transform 0.3s var(--ease);
+    }
+    .contact-info-card:hover .ci-icon { transform: scale(1.12) rotate(-6deg); }
+    .ci-icon--teal  { background: rgba(13,148,136,0.12); }
+    .ci-icon--gold  { background: rgba(212,160,23,0.12); }
+    .ci-icon--red   { background: rgba(220,38,38,0.10); }
+    .ci-icon--navy  { background: rgba(15,23,42,0.08); }
+    .contact-info-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1rem; font-weight: 700;
+      color: var(--color-heading);
+      margin: 0;
+    }
+    .contact-info-card p {
+      font-size: 0.88rem; color: var(--color-text);
+      margin: 0; line-height: 1.6;
+    }
+    .ci-link {
+      margin-top: 4px;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--color-teal);
+      text-decoration: none;
+      letter-spacing: 0.03em;
+      transition: color 0.2s;
+    }
+    .ci-link:hover { color: var(--color-gold); }
+
+    /* legacy selector kept for backward compat */
+    .contact-info-card .icon-badge { flex-shrink: 0; width: 52px; height: 52px; margin-bottom: 0; }
+    .map-embed { border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-border); }
+    .map-embed iframe { width: 100%; height: 480px; border: 0; display: block; }
+    .hours-table { width: 100%; }
+    .hours-table td { padding: 8px 0; border-bottom: 1px dashed var(--color-border); font-size: 0.92rem; }
+    .hours-table td:last-child { text-align: right; font-weight: 600; color: var(--color-heading); }
+    .emergency-banner {
+      background: var(--gradient-primary); color: #fff; border-radius: var(--radius-md);
+      padding: var(--space-md); display: flex; align-items: center; gap: 14px; margin-bottom: var(--space-md);
+    }
+    .emergency-banner strong { display: block; }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body data-page="contact">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Contact STACKLY</h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span>/</span><span>Contact</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section" style="padding-bottom:0;">
+      <div class="container grid-2" style="align-items:center;">
+        <div data-animate="fade-up">
+          <span class="eyebrow">We're Here to Help</span>
+          <h2>Reach the Right Department, Fast</h2>
+          <p>Whether it's a routine question or an urgent concern, our care coordinators connect you with the right team quickly. Walk-ins are welcome for minor concerns, and our front desk can help schedule same-week appointments for most departments.</p>
+        </div>
+        <div data-animate="zoom-in">
+          <img src="https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=700&h=420&q=80" alt="STACKLY Veterinary Clinic building exterior" loading="lazy" style="border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);width:100%;" width="700" height="420">
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="grid-4 contact-info-cards" style="margin-bottom:var(--space-xl);">
+
+          <div class="contact-info-card" data-animate="fade-up">
+            <div class="ci-icon ci-icon--teal">📞</div>
+            <h3>Contact Number</h3>
+            <p>+1 (800) 555-0199</p>
+            <a href="404.html" class="ci-link">Call Us</a>
+          </div>
+
+          <div class="contact-info-card" data-animate="fade-up" data-delay="100">
+            <div class="ci-icon ci-icon--gold">✉️</div>
+            <h3>Email Address</h3>
+            <p>care@stacklyvet.com</p>
+            <a href="404.html" class="ci-link">Send Email</a>
+          </div>
+
+          <div class="contact-info-card" data-animate="fade-up" data-delay="200">
+            <div class="ci-icon ci-icon--red">🚨</div>
+            <h3>Emergency</h3>
+            <p>+1 (800) 555-0911</p>
+            <a href="404.html" class="ci-link">Call Now — 24/7</a>
+          </div>
+
+          <div class="contact-info-card" data-animate="fade-up" data-delay="300">
+            <div class="ci-icon ci-icon--navy">📍</div>
+            <h3>Our Address</h3>
+            <p>142 Petal Lane, Suite 3<br>San Francisco, CA 94102</p>
+            <a href="404.html" class="ci-link">Get Directions</a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <section class="section" style="padding-top:0;">
+      <div class="container contact-grid">
+        <!-- Form -->
+        <div data-animate="fade-up">
+          <span class="eyebrow">Get In Touch</span>
+          <h2>Send Us a Message</h2>
+          <p>Have a question about a service or your pet's care? Our team replies within one business day.</p>
+
+          <form id="contactForm" data-validate novalidate style="margin-top:var(--space-md);">
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="contactName">Full Name</label>
+                <input type="text" id="contactName" name="contactName" class="form-control" data-rule="name" required>
+                <div class="field-message error-message">⚠ Enter your full name (first and last name).</div>
+                <div class="field-message success-message">✓ Looks good.</div>
+              </div>
+              <div class="form-group">
+                <label for="contactEmail">Email Address</label>
+                <input type="email" id="contactEmail" name="contactEmail" class="form-control" data-rule="email" required>
+                <div class="field-message error-message">⚠ Enter a valid email.</div>
+                <div class="field-message success-message">✓ Looks good.</div>
+              </div>
+            </div>
+            <div class="grid-2">
+              <div class="form-group">
+                <label for="contactPhone">Phone Number</label>
+                <input type="tel" id="contactPhone" name="contactPhone" class="form-control" data-rule="phone" required>
+                <div class="field-message error-message">⚠ Enter a valid phone number.</div>
+                <div class="field-message success-message">✓ Looks good.</div>
+              </div>
+              <div class="form-group">
+                <label for="contactSubject">Subject</label>
+                <select id="contactSubject" name="contactSubject" class="form-control" required>
+                  <option value="">Select a topic</option>
+                  <option>General Inquiry</option>
+                  <option>Appointment Question</option>
+                  <option>Billing</option>
+                  <option>Feedback</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Message</label>
+              <textarea id="contactMessage" name="contactMessage" class="form-control" rows="5" required minlength="10"></textarea>
+              <div class="field-message error-message">⚠ Please write a short message.</div>
+              <div class="field-message success-message">✓ Looks good.</div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Message</button>
+            <p id="contactSuccess" style="display:none;color:var(--color-success);margin-top:12px;font-weight:600;">✓ Message sent! We'll be in touch shortly.</p>
+          </form>
+        </div>
+
+        <!-- Info -->
+        <div data-animate="fade-up" data-delay="100">
+          <div class="emergency-banner">
+            <span style="font-size:1.8rem;">🚑</span>
+            <div>
+              <strong>24/7 Emergency Line</strong>
+              <span>+1 (800) 555-0911 — always staffed, always ready.</span>
+            </div>
+          </div>
+
+          <div class="card" style="padding:var(--space-md);margin-bottom:14px;">
+            <h3 style="margin-bottom:10px;">Clinic Hours</h3>
+            <table class="hours-table">
+              <tr><td>Monday – Friday</td><td>8:00 AM – 8:00 PM</td></tr>
+              <tr><td>Saturday</td><td>9:00 AM – 6:00 PM</td></tr>
+              <tr><td>Sunday</td><td>10:00 AM – 4:00 PM</td></tr>
+              <tr><td>Emergency Care</td><td>24/7</td></tr>
+            </table>
+          </div>
+
+          <div class="map-embed">
+            <iframe
+              src="https://www.google.com/maps?q=veterinary%20clinic&output=embed"
+              title="STACKLY Veterinary Clinic location map"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script>
+    document.getElementById('contactForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const valid = Array.from(this.querySelectorAll('.form-control')).every(f => StacklyValidate.validateField(f));
+      if (valid) {
+        e.stopImmediatePropagation();
+        const successMsg = document.getElementById('contactSuccess');
+        successMsg.style.display = 'block';
+        this.reset();
+        this.querySelectorAll('.form-group').forEach(g => g.classList.remove('has-success', 'has-error'));
+        setTimeout(() => { successMsg.style.display = 'none'; }, 4000);
+      }
+    });
+  </script>
+</body>
+</html>

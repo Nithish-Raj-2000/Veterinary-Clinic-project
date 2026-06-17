@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="STACKLY Veterinary Clinic admin dashboard — manage doctors, patients, appointments, blog content, and clinic analytics.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+</head>
+<body data-page="admin-dashboard">
+  <div class="dash-shell">
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="dash-sidebar">
+      <div class="dash-brand">
+        <a href="admin-dashboard.html" class="brand">
+          <div class="brand-text">
+            <img src="Images/stackly-logo.webp" alt="STACKLY Veterinary Clinic" width="44" height="44">
+            <span class="brand-tagline">VETERINARY CLINIC</span>
+          </div>
+        </a>
+      </div>
+      <nav class="dash-nav" aria-label="Admin navigation">
+        <a href="#" data-target="panel-overview" class="active">📊 Analytics Overview</a>
+        <a href="#" data-target="panel-doctors">🩺 Doctors Management</a>
+        <a href="#" data-target="panel-patients">🐾 Patients Management</a>
+        <a href="#" data-target="panel-appointments">📅 Appointments</a>
+        <a href="#" data-target="panel-blog">📝 Blog Management</a>
+        <a href="#" data-target="panel-messages">✉️ Contact Messages</a>
+        <a href="#" data-target="panel-settings">⚙️ Settings</a>
+      </nav>
+      <div class="dash-logout-wrapper">
+        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Sign Out</a>
+      </div>
+    </aside>
+    <div class="dash-overlay" id="dashOverlay"></div>
+
+    <!-- ================= MAIN ================= -->
+    <div class="dash-main">
+      <div class="dash-topbar">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+          <h1 id="dashTitle" style="font-size:1.1rem;margin:0;">Analytics Overview</h1>
+        </div>
+        <div class="dash-topbar-right">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">🔔<span class="notif-badge">3</span></button>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-item"><span class="notif-dot"></span><div><strong>New appointment</strong><br>Sarah Whitman booked with Dr. Lee for Jun 18.</div></div>
+            <div class="notif-item"><span class="notif-dot"></span><div><strong>New message</strong><br>James Okafor sent a billing question.</div></div>
+            <div class="notif-item"><span class="notif-dot"></span><div><strong>Low stock alert</strong><br>Pharmacy: Amoxicillin running low.</div></div>
+          </div>
+          <div class="topbar-user">
+            <div class="user-avatar-initial" id="topbarAvatar">A</div>
+            <div><div class="user-name" id="topbarUserName">Admin</div><div class="user-role">Administrator</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-content">
+
+        <!-- ============ HERO ============ -->
+        <div class="dash-hero">
+          <div class="dash-hero-left">
+            <p class="dash-hero-eyebrow">🛠️ Administrator &nbsp;·&nbsp; <span id="heroDate"></span></p>
+            <h2 class="dash-hero-title">Welcome back, <span class="hero-name" id="heroUserName">Admin</span>!</h2>
+            <p class="dash-hero-sub" id="heroUserEmail">admin@stacklyvet.com</p>
+          </div>
+          <div class="dash-hero-right">
+            <div class="dash-hero-stat">
+              <span class="dash-hero-stat-val">38</span>
+              <span class="dash-hero-stat-label">Appointments Today</span>
+            </div>
+            <div class="dash-hero-stat">
+              <span class="dash-hero-stat-val">12,480</span>
+              <span class="dash-hero-stat-label">Total Patients</span>
+            </div>
+            <div class="dash-hero-stat">
+              <span class="dash-hero-stat-val">42</span>
+              <span class="dash-hero-stat-label">Active Doctors</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ OVERVIEW ============ -->
+        <section class="dash-section active" id="panel-overview">
+          <div class="kpi-grid">
+            <div class="card kpi-card" data-animate="fade-up">
+              <div class="kpi-icon" style="background:var(--gradient-emerald);">🐾</div>
+              <div><div class="kpi-value">12,480</div><div class="kpi-label">Total Patients</div></div>
+            </div>
+            <div class="card kpi-card" data-animate="fade-up" data-delay="50">
+              <div class="kpi-icon" style="background:var(--gradient-primary);">📅</div>
+              <div><div class="kpi-value">38</div><div class="kpi-label">Today's Appointments</div></div>
+            </div>
+            <div class="card kpi-card" data-animate="fade-up" data-delay="100">
+              <div class="kpi-icon" style="background:var(--gradient-gold);color:var(--color-navy);">💰</div>
+              <div><div class="kpi-value">$84,200</div><div class="kpi-label">Revenue This Month</div></div>
+            </div>
+            <div class="card kpi-card" data-animate="fade-up" data-delay="150">
+              <div class="kpi-icon" style="background:var(--gradient-emerald);">👨‍⚕️</div>
+              <div><div class="kpi-value">42</div><div class="kpi-label">Active Doctors</div></div>
+            </div>
+          </div>
+
+          <div class="grid-2" style="margin-bottom:var(--space-lg);">
+            <div class="card chart-card" data-animate="fade-up">
+              <h3>Revenue — Last 6 Months</h3>
+              <div class="bar-chart" data-max="100">
+                <div class="bar-col"><div class="bar" data-value="58">$58k</div><span class="bar-label">Jan</span></div>
+                <div class="bar-col"><div class="bar" data-value="64">$64k</div><span class="bar-label">Feb</span></div>
+                <div class="bar-col"><div class="bar" data-value="71">$71k</div><span class="bar-label">Mar</span></div>
+                <div class="bar-col"><div class="bar" data-value="69">$69k</div><span class="bar-label">Apr</span></div>
+                <div class="bar-col"><div class="bar" data-value="78">$78k</div><span class="bar-label">May</span></div>
+                <div class="bar-col"><div class="bar" data-value="84">$84k</div><span class="bar-label">Jun</span></div>
+              </div>
+            </div>
+            <div class="card chart-card" data-animate="fade-up" data-delay="100">
+              <h3>Appointments by Department</h3>
+              <div class="donut-wrap">
+                <div class="donut"></div>
+                <div class="donut-legend">
+                  <span><i class="dot" style="background:var(--color-teal);"></i>General &amp; Surgery — 45%</span>
+                  <span><i class="dot" style="background:var(--color-emerald);"></i>Vaccination — 25%</span>
+                  <span><i class="dot" style="background:var(--color-gold);"></i>Dermatology — 18%</span>
+                  <span><i class="dot" style="background:var(--color-error);"></i>Emergency — 12%</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ DOCTORS MANAGEMENT ============ -->
+        <section class="dash-section" id="panel-doctors">
+          <div class="dash-section-head"><h2>Doctors Management</h2><button class="btn btn-primary btn-sm">+ Add Doctor</button></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Doctor</th><th>Department</th><th>Experience</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Dr. Olivia Bennett</td><td>Surgery</td><td>18 yrs</td><td><span class="status-pill confirmed">Active</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+                <tr><td>Dr. Marcus Lee</td><td>Internal Medicine</td><td>14 yrs</td><td><span class="status-pill confirmed">Active</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+                <tr><td>Dr. Priya Nandan</td><td>Dermatology</td><td>11 yrs</td><td><span class="status-pill confirmed">Active</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+                <tr><td>Dr. Ethan Cole</td><td>Emergency</td><td>9 yrs</td><td><span class="status-pill confirmed">Active</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+                <tr><td>Dr. Grace Tanaka</td><td>Dentistry</td><td>12 yrs</td><td><span class="status-pill pending">On Leave</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ PATIENTS MANAGEMENT ============ -->
+        <section class="dash-section" id="panel-patients">
+          <div class="dash-section-head"><h2>Patients Management</h2><button class="btn btn-primary btn-sm">+ Add Patient</button></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Owner</th><th>Pet</th><th>Species</th><th>Last Visit</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Sarah Whitman</td><td>Milo</td><td>Cat</td><td>Jun 02, 2026</td><td><a href="404.html" class="card-link">View</a></td></tr>
+                <tr><td>James Okafor</td><td>Rex</td><td>Dog</td><td>May 28, 2026</td><td><a href="404.html" class="card-link">View</a></td></tr>
+                <tr><td>Elena Marquez</td><td>Luna &amp; Nova</td><td>Cat</td><td>May 21, 2026</td><td><a href="404.html" class="card-link">View</a></td></tr>
+                <tr><td>Priya Kapoor</td><td>Bruno</td><td>Dog</td><td>May 14, 2026</td><td><a href="404.html" class="card-link">View</a></td></tr>
+                <tr><td>Marcus Webb</td><td>Kiwi</td><td>Bird</td><td>May 09, 2026</td><td><a href="404.html" class="card-link">View</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ APPOINTMENTS ============ -->
+        <section class="dash-section" id="panel-appointments">
+          <div class="dash-section-head"><h2>Appointments</h2><button class="btn btn-primary btn-sm">+ New Appointment</button></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Patient</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Milo (Sarah Whitman)</td><td>Dr. Marcus Lee</td><td>Jun 16, 2026</td><td>10:00 AM</td><td><span class="status-pill confirmed">Confirmed</span></td></tr>
+                <tr><td>Rex (James Okafor)</td><td>Dr. Ethan Cole</td><td>Jun 16, 2026</td><td>11:30 AM</td><td><span class="status-pill pending">Pending</span></td></tr>
+                <tr><td>Bruno (Priya Kapoor)</td><td>Dr. Grace Tanaka</td><td>Jun 17, 2026</td><td>9:00 AM</td><td><span class="status-pill confirmed">Confirmed</span></td></tr>
+                <tr><td>Kiwi (Marcus Webb)</td><td>Dr. Layla Haddad</td><td>Jun 17, 2026</td><td>2:00 PM</td><td><span class="status-pill cancelled">Cancelled</span></td></tr>
+                <tr><td>Cooper (Aisha Thompson)</td><td>Dr. Olivia Bennett</td><td>Jun 18, 2026</td><td>3:30 PM</td><td><span class="status-pill pending">Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ BLOG MANAGEMENT ============ -->
+        <section class="dash-section" id="panel-blog">
+          <div class="dash-section-head"><h2>Blog Management</h2><button class="btn btn-primary btn-sm">+ New Post</button></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Title</th><th>Category</th><th>Author</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>The Complete Guide to Preventive Pet Care</td><td>Wellness</td><td>Dr. Olivia Bennett</td><td><span class="status-pill confirmed">Published</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+                <tr><td>7 Signs Your Pet's Diet Needs a Check-Up</td><td>Nutrition</td><td>Dr. Marcus Lee</td><td><span class="status-pill confirmed">Published</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+                <tr><td>Vaccination Timeline for Puppies &amp; Kittens</td><td>Vaccination</td><td>Admin</td><td><span class="status-pill confirmed">Published</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+                <tr><td>STACKLY Opens Expanded Imaging Wing</td><td>Clinic News</td><td>Admin</td><td><span class="status-pill pending">Draft</span></td><td><a href="404.html" class="card-link">Edit</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ CONTACT MESSAGES ============ -->
+        <section class="dash-section" id="panel-messages">
+          <div class="dash-section-head"><h2>Contact Messages</h2></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Name</th><th>Subject</th><th>Date</th><th>Status</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>James Okafor</td><td>Billing</td><td>Jun 14, 2026</td><td><span class="status-pill pending">Unread</span></td><td><a href="404.html" class="card-link">View</a></td></tr>
+                <tr><td>Aisha Thompson</td><td>Appointment Question</td><td>Jun 13, 2026</td><td><span class="status-pill confirmed">Replied</span></td><td><a href="404.html" class="card-link">View</a></td></tr>
+                <tr><td>Marcus Webb</td><td>General Inquiry</td><td>Jun 12, 2026</td><td><span class="status-pill confirmed">Replied</span></td><td><a href="404.html" class="card-link">View</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ SETTINGS ============ -->
+        <section class="dash-section" id="panel-settings">
+          <div class="dash-section-head"><h2>Settings</h2></div>
+          <div class="card settings-form" style="padding:var(--space-lg);">
+            <div class="form-group">
+              <label for="settingsName">Full Name</label>
+              <input type="text" id="settingsName" class="form-control" value="Clinic Administrator">
+            </div>
+            <div class="form-group">
+              <label for="settingsEmail">Email Address</label>
+              <input type="email" id="settingsEmail" class="form-control" value="admin@stacklyvet.com">
+            </div>
+            <div class="form-group">
+              <label for="settingsNotif">Notification Preferences</label>
+              <select id="settingsNotif" class="form-control">
+                <option>All notifications</option>
+                <option>Appointments only</option>
+                <option>None</option>
+              </select>
+            </div>
+            <button type="button" class="btn btn-primary">Save Changes</button>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Dashboard | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="STACKLY Veterinary Clinic patient dashboard — manage your pet profiles, appointments, vaccination records, medical reports, prescriptions, and billing.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/dashboard.css">
+  <style>
+    .pet-profile-card { text-align: center; padding: var(--space-md); }
+    .pet-profile-card img { width: 100%; aspect-ratio: 1/1; object-fit: cover; border-radius: var(--radius-md); margin-bottom: var(--space-sm); }
+  </style>
+</head>
+<body data-page="patient-dashboard">
+  <div class="dash-shell">
+    <!-- ================= SIDEBAR ================= -->
+    <aside class="dash-sidebar">
+      <div class="dash-brand">
+        <a href="patient-dashboard.html" class="brand">
+          <div class="brand-text">
+            <img src="Images/stackly-logo.webp" alt="STACKLY Veterinary Clinic" width="44" height="44">
+            <span class="brand-tagline">VETERINARY CLINIC</span>
+          </div>
+        </a>
+      </div>
+      <nav class="dash-nav" aria-label="Patient navigation">
+        <a href="#" data-target="panel-pets" class="active">🐾 Pet Profiles</a>
+        <a href="#" data-target="panel-upcoming">📅 Upcoming Appointments</a>
+        <a href="#" data-target="panel-history">🕐 Appointment History</a>
+        <a href="#" data-target="panel-vaccinations">💉 Vaccination Records</a>
+        <a href="#" data-target="panel-reports">🧪 Medical Reports</a>
+        <a href="#" data-target="panel-prescriptions">💊 Prescriptions</a>
+        <a href="#" data-target="panel-billing">💳 Billing</a>
+      </nav>
+      <div class="dash-logout-wrapper">
+        <a href="login.html" data-action="logout" class="dash-logout-btn">🚪 Sign Out</a>
+      </div>
+    </aside>
+    <div class="dash-overlay" id="dashOverlay"></div>
+
+    <!-- ================= MAIN ================= -->
+    <div class="dash-main">
+      <div class="dash-topbar">
+        <div style="display:flex;align-items:center;gap:14px;">
+          <button class="sidebar-toggle-btn" id="sidebarToggle" aria-label="Toggle sidebar">☰</button>
+          <h1 id="dashTitle" style="font-size:1.1rem;margin:0;">Pet Profiles</h1>
+        </div>
+        <div class="dash-topbar-right">
+          <button class="notif-btn" id="notifBtn" aria-label="Notifications">🔔<span class="notif-badge">1</span></button>
+          <div class="notif-dropdown" id="notifDropdown">
+            <div class="notif-item"><span class="notif-dot"></span><div><strong>Appointment reminder</strong><br>Milo's wellness exam is tomorrow at 10:00 AM.</div></div>
+          </div>
+          <div class="topbar-user">
+            <div class="user-avatar-initial" id="topbarAvatar">S</div>
+            <div><div class="user-name" id="topbarUserName">Sarah Whitman</div><div class="user-role">Patient</div></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-content">
+
+        <!-- ============ HERO ============ -->
+        <div class="dash-hero">
+          <div class="dash-hero-left">
+            <p class="dash-hero-eyebrow">🐾 Pet Owner &nbsp;·&nbsp; <span id="heroDate"></span></p>
+            <h2 class="dash-hero-title">Welcome back, <span class="hero-name" id="heroUserName">Patient</span>!</h2>
+            <p class="dash-hero-sub" id="heroUserEmail">patient@example.com</p>
+          </div>
+          <div class="dash-hero-right">
+            <div class="dash-hero-stat">
+              <span class="dash-hero-stat-val">Jun 17</span>
+              <span class="dash-hero-stat-label">Next Appointment</span>
+            </div>
+            <div class="dash-hero-stat">
+              <span class="dash-hero-stat-val">2</span>
+              <span class="dash-hero-stat-label">Registered Pets</span>
+            </div>
+            <div class="dash-hero-stat">
+              <span class="dash-hero-stat-val">$95</span>
+              <span class="dash-hero-stat-label">Pending Bill</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ============ PET PROFILES ============ -->
+        <section class="dash-section active" id="panel-pets">
+          <div class="dash-section-head"><h2>My Pets</h2><button class="btn btn-primary btn-sm">+ Add Pet</button></div>
+          <div class="grid-3">
+            <div class="card pet-profile-card" data-animate="fade-up">
+              <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=300&h=300&q=80" alt="Milo the cat">
+              <h3>Milo</h3>
+              <span class="badge">Cat · Domestic Shorthair</span>
+              <p style="margin-top:8px;font-size:0.85rem;">Age 4 · 4.2kg · Last visit Jun 02, 2026</p>
+            </div>
+            <div class="card pet-profile-card" data-animate="fade-up" data-delay="100">
+              <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?auto=format&fit=crop&w=300&h=300&q=80" alt="Bella the dog">
+              <h3>Bella</h3>
+              <span class="badge">Dog · Beagle</span>
+              <p style="margin-top:8px;font-size:0.85rem;">Age 2 · 11.5kg · Last visit Apr 18, 2026</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- ============ UPCOMING APPOINTMENTS ============ -->
+        <section class="dash-section" id="panel-upcoming">
+          <div class="dash-section-head"><h2>Upcoming Appointments</h2><a href="appointments.html" class="btn btn-primary btn-sm">+ Book New</a></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Pet</th><th>Doctor</th><th>Date</th><th>Time</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>Milo</td><td>Dr. Marcus Lee</td><td>Jun 17, 2026</td><td>10:00 AM</td><td><span class="status-pill confirmed">Confirmed</span></td></tr>
+                <tr><td>Bella</td><td>Dr. Grace Tanaka</td><td>Jun 24, 2026</td><td>2:00 PM</td><td><span class="status-pill pending">Pending</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ APPOINTMENT HISTORY ============ -->
+        <section class="dash-section" id="panel-history">
+          <div class="dash-section-head"><h2>Appointment History</h2></div>
+          <div class="timeline">
+            <div class="timeline-item"><span>Jun 02, 2026 — Milo</span><h4>Annual Wellness Exam</h4><p>Dr. Marcus Lee · Weight and bloodwork within normal range.</p></div>
+            <div class="timeline-item"><span>Apr 18, 2026 — Bella</span><h4>Dental Cleaning</h4><p>Dr. Grace Tanaka · Routine cleaning, no extractions needed.</p></div>
+            <div class="timeline-item"><span>Feb 09, 2026 — Milo</span><h4>Vaccination Booster</h4><p>Dr. Marcus Lee · FVRCP booster administered, no reaction.</p></div>
+            <div class="timeline-item"><span>Dec 15, 2025 — Bella</span><h4>Limping Check-Up</h4><p>Dr. Noah Whitfield · Mild strain, resolved with rest.</p></div>
+          </div>
+        </section>
+
+        <!-- ============ VACCINATION RECORDS ============ -->
+        <section class="dash-section" id="panel-vaccinations">
+          <div class="dash-section-head"><h2>Vaccination Records</h2></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Pet</th><th>Vaccine</th><th>Date Given</th><th>Next Due</th></tr></thead>
+              <tbody>
+                <tr><td>Milo</td><td>FVRCP</td><td>Feb 09, 2026</td><td>Feb 09, 2027</td></tr>
+                <tr><td>Milo</td><td>Rabies</td><td>Nov 12, 2025</td><td>Nov 12, 2026</td></tr>
+                <tr><td>Bella</td><td>DHPP</td><td>Mar 03, 2026</td><td>Mar 03, 2027</td></tr>
+                <tr><td>Bella</td><td>Bordetella</td><td>Mar 03, 2026</td><td>Sep 03, 2026</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ MEDICAL REPORTS ============ -->
+        <section class="dash-section" id="panel-reports">
+          <div class="dash-section-head"><h2>Medical Reports</h2></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Pet</th><th>Report</th><th>Date</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>Milo</td><td>Annual Bloodwork Panel</td><td>Jun 02, 2026</td><td><a href="404.html" class="card-link">⬇ Download</a></td></tr>
+                <tr><td>Bella</td><td>Dental X-Ray Report</td><td>Apr 18, 2026</td><td><a href="404.html" class="card-link">⬇ Download</a></td></tr>
+                <tr><td>Milo</td><td>Vaccination Certificate</td><td>Feb 09, 2026</td><td><a href="404.html" class="card-link">⬇ Download</a></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ PRESCRIPTIONS ============ -->
+        <section class="dash-section" id="panel-prescriptions">
+          <div class="dash-section-head"><h2>Prescriptions</h2></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Pet</th><th>Medication</th><th>Dosage</th><th>Refill</th></tr></thead>
+              <tbody>
+                <tr><td>Bella</td><td>Joint Supplement Chews</td><td>1 daily</td><td><a href="404.html" class="card-link">Request Refill</a></td></tr>
+                <tr><td>Milo</td><td>None Active</td><td>—</td><td>—</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+        <!-- ============ BILLING ============ -->
+        <section class="dash-section" id="panel-billing">
+          <div class="dash-section-head"><h2>Billing</h2></div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>Invoice</th><th>Description</th><th>Date</th><th>Amount</th><th>Status</th></tr></thead>
+              <tbody>
+                <tr><td>#INV-1042</td><td>Annual Wellness Exam — Milo</td><td>Jun 02, 2026</td><td>$185.00</td><td><span class="status-pill confirmed">Paid</span></td></tr>
+                <tr><td>#INV-1038</td><td>Dental Cleaning — Bella</td><td>Apr 18, 2026</td><td>$320.00</td><td><span class="status-pill confirmed">Paid</span></td></tr>
+                <tr><td>#INV-1051</td><td>Upcoming Appointment — Milo</td><td>Jun 17, 2026</td><td>$95.00</td><td><span class="status-pill pending">Due</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/dashboard.js"></script>
+</body>
+</html>

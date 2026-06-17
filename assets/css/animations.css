@@ -1,0 +1,106 @@
+/* ==========================================================================
+   STACKLY Veterinary Clinic — Animations
+   ========================================================================== */
+
+@keyframes fadeUp      { from { opacity:0; transform:translateY(32px);   } to { opacity:1; transform:translateY(0); } }
+@keyframes fadeDown    { from { opacity:0; transform:translateY(-24px);  } to { opacity:1; transform:translateY(0); } }
+@keyframes slideLeft   { from { opacity:0; transform:translateX(-48px);  } to { opacity:1; transform:translateX(0); } }
+@keyframes slideRight  { from { opacity:0; transform:translateX(48px);   } to { opacity:1; transform:translateX(0); } }
+@keyframes zoomIn      { from { opacity:0; transform:scale(0.88);        } to { opacity:1; transform:scale(1); } }
+@keyframes bounceIn    {
+  0%   { opacity:0; transform:scale(0.6); }
+  60%  { opacity:1; transform:scale(1.08); }
+  80%  { transform:scale(0.97); }
+  100% { transform:scale(1); }
+}
+@keyframes blurReveal  { from { opacity:0; filter:blur(12px); } to { opacity:1; filter:blur(0); } }
+@keyframes floaty      { 0%,100% { transform:translateY(0); } 50% { transform:translateY(-14px); } }
+@keyframes shine       { 0% { background-position:-200% 0; } 100% { background-position:200% 0; } }
+@keyframes shimmer     { 0% { background-position:-400px 0; } 100% { background-position:400px 0; } }
+@keyframes spin        { to { transform:rotate(360deg); } }
+@keyframes pulseGlow   { 0%,100% { box-shadow:0 0 0 0 rgba(13,148,136,0.45); } 50% { box-shadow:0 0 0 14px rgba(13,148,136,0); } }
+@keyframes pulseGoldGlow { 0%,100% { box-shadow:0 0 0 0 rgba(212,160,23,0.45); } 50% { box-shadow:0 0 0 14px rgba(212,160,23,0); } }
+@keyframes heroZoom    { from { transform:scale(1); } to { transform:scale(1.12); } }
+@keyframes gradientFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes cardPop {
+  0%   { transform:translateY(0) scale(1); }
+  40%  { transform:translateY(-6px) scale(1.02); }
+  100% { transform:translateY(-10px) scale(1.01); }
+}
+@keyframes borderGlow  {
+  0%,100% { border-color:rgba(13,148,136,0.15); }
+  50%      { border-color:rgba(13,148,136,0.5); }
+}
+@keyframes iconBounce  {
+  0%,100% { transform:translateY(0) rotate(0deg) scale(1); }
+  30%     { transform:translateY(-6px) rotate(-5deg) scale(1.1); }
+  60%     { transform:translateY(-3px) rotate(3deg) scale(1.05); }
+}
+@keyframes countUp     { from { opacity:0; transform:translateY(10px); } to { opacity:1; transform:translateY(0); } }
+@keyframes tabSlide    { from { opacity:0; transform:translateX(16px); } to { opacity:1; transform:translateX(0); } }
+
+/* ─── Scroll-reveal base states ─────────────────────────────────────────── */
+[data-animate]             { opacity:0; }
+[data-animate="fade-up"]   { transform:translateY(32px); }
+[data-animate="fade-down"] { transform:translateY(-24px); }
+[data-animate="zoom-in"]   { transform:scale(0.88); }
+[data-animate="blur"]      { filter:blur(12px); }
+[data-animate="slide-left"]  { transform:translateX(-48px); }
+[data-animate="slide-right"] { transform:translateX(48px); }
+[data-animate="bounce-in"]   { transform:scale(0.6); }
+
+[data-animate].in-view {
+  opacity:1;
+  transform:none;
+  filter:blur(0);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease), filter 0.7s var(--ease);
+}
+[data-animate="bounce-in"].in-view {
+  animation: bounceIn 0.7s var(--ease) both;
+}
+
+/* ─── Utility animation classes ─────────────────────────────────────────── */
+.float-el    { animation: floaty 5s ease-in-out infinite; }
+.pulse-dot   { animation: pulseGlow 2s ease-out infinite; border-radius:50%; }
+.pulse-gold  { animation: pulseGoldGlow 2s ease-out infinite; }
+
+.shine-text {
+  background: linear-gradient(110deg, var(--color-gold) 40%, #fff8d6 50%, var(--color-gold) 60%);
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 3.5s linear infinite;
+}
+
+.spinner {
+  width:20px; height:20px;
+  border:3px solid rgba(255,255,255,0.3);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation: spin 0.7s linear infinite;
+}
+
+/* Stagger children on reveal */
+.stagger-children > *:nth-child(1)  { transition-delay: 0ms; }
+.stagger-children > *:nth-child(2)  { transition-delay: 80ms; }
+.stagger-children > *:nth-child(3)  { transition-delay: 160ms; }
+.stagger-children > *:nth-child(4)  { transition-delay: 240ms; }
+.stagger-children > *:nth-child(5)  { transition-delay: 320ms; }
+.stagger-children > *:nth-child(6)  { transition-delay: 400ms; }
+
+/* Counter fade */
+.stat-number { transition: color var(--t-base); animation: countUp 0.5s var(--ease) both; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}

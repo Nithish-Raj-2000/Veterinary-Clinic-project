@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="Log in to your STACKLY Veterinary Clinic account as an Admin, Doctor, or Patient.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body data-page="login">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <div class="auth-wrap" id="main-content">
+    <div class="auth-visual" data-animate="fade-up">
+      <a href="index.html" class="auth-brand">
+        <img src="Images/stackly-logo.webp" alt="STACKLY Veterinary Clinic" width="48" height="48">
+        <span>VETERINARY CLINIC</span>
+      </a>
+      <span class="eyebrow" style="color:var(--color-gold);">Welcome Back</span>
+      <h2>Premium Care, One Login Away.</h2>
+      <p style="color:rgba(255,255,255,0.85);max-width:420px;">Access your dashboard to manage appointments, patient records, prescriptions, and clinic operations — all in one secure place.</p>
+      <ul style="display:flex;flex-direction:column;gap:14px;margin-top:var(--space-lg);color:rgba(255,255,255,0.85);">
+        <li>🔐 Secure role-based access</li>
+        <li>📅 Manage appointments in real time</li>
+        <li>📁 Access medical records anywhere</li>
+      </ul>
+    </div>
+
+    <div class="auth-form-side">
+      <div class="auth-card" data-animate="zoom-in">
+        <a href="index.html" class="auth-back-btn">← Back to Home</a>
+
+        <a href="index.html" class="brand auth-brand-center">
+          <div class="brand-text">
+            <img src="Images/stackly-logo.webp" alt="STACKLY Veterinary Clinic" width="52" height="52">
+            <span class="brand-tagline">VETERINARY CLINIC</span>
+          </div>
+        </a>
+
+        <div class="auth-tabs">
+          <a href="login.html" class="active">Login</a>
+          <a href="signup.html">Sign Up</a>
+        </div>
+
+        <h2 style="margin-bottom:6px;">Sign In to Your Account</h2>
+        <p style="margin-bottom:var(--space-md);font-size:0.92rem;">Choose your role and enter your credentials.</p>
+
+        <form id="loginForm" data-validate novalidate>
+          <div class="form-group">
+            <label for="loginRole">I am logging in as</label>
+            <div class="role-select" id="loginRoleSelect">
+              <input type="radio" name="role" id="roleAdmin" value="admin" checked>
+              <label for="roleAdmin"><span>🛠️</span>Admin</label>
+              <input type="radio" name="role" id="roleDoctor" value="doctor">
+              <label for="roleDoctor"><span>🩺</span>Doctor</label>
+              <input type="radio" name="role" id="rolePatient" value="patient">
+              <label for="rolePatient"><span>🐾</span>Patient</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="loginEmail">Email Address</label>
+            <input type="email" id="loginEmail" name="loginEmail" class="form-control" data-rule="email" required autocomplete="username">
+            <div class="field-message error-message">⚠ Enter a valid email address (e.g. you@example.com).</div>
+            <div class="field-message success-message">✓ Looks good.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="loginPassword">Password</label>
+            <div class="input-wrap">
+              <input type="password" id="loginPassword" name="loginPassword" class="form-control" required autocomplete="current-password">
+              <button type="button" class="toggle-password">Show</button>
+            </div>
+            <div class="field-message error-message">⚠ Password is required.</div>
+            <div class="field-message success-message">✓ Looks good.</div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:var(--space-md);">
+            <label class="checkbox-row"><input type="checkbox" id="rememberMe"> Remember me</label>
+            <a href="#" id="forgotPasswordLink" style="font-size:0.85rem;color:var(--color-teal);font-weight:600;">Forgot password?</a>
+          </div>
+
+          <div id="forgotPasswordBox" style="display:none;background:var(--color-bg-alt);padding:var(--space-md);border-radius:var(--radius-sm);margin-bottom:var(--space-md);">
+            <label for="resetEmail" style="font-size:0.85rem;">Enter your email and we'll send reset instructions.</label>
+            <div style="display:flex;gap:8px;margin-top:8px;">
+              <input type="email" id="resetEmail" class="form-control" placeholder="you@example.com">
+              <button type="button" id="sendResetBtn" class="btn btn-outline-dark btn-sm" style="white-space:nowrap;">Send Link</button>
+            </div>
+            <p id="resetSuccess" style="display:none;color:var(--color-success);font-size:0.85rem;margin-top:8px;">✓ Reset link sent! Check your inbox.</p>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Log In</button>
+          <p id="loginSuccess" style="display:none;color:var(--color-success);margin-top:12px;font-weight:600;text-align:center;">✓ Logged in successfully! Redirecting to your dashboard...</p>
+        </form>
+
+        <p style="text-align:center;margin-top:var(--space-md);font-size:0.9rem;">Don't have an account? <a href="signup.html" style="color:var(--color-teal);font-weight:600;">Sign up</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script>
+    document.getElementById('forgotPasswordLink').addEventListener('click', function (e) {
+      e.preventDefault();
+      const box = document.getElementById('forgotPasswordBox');
+      box.style.display = box.style.display === 'none' ? 'block' : 'none';
+    });
+    document.getElementById('sendResetBtn').addEventListener('click', function () {
+      const email = document.getElementById('resetEmail');
+      if (StacklyValidate.sanitize(email.value).match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        document.getElementById('resetSuccess').style.display = 'block';
+      } else {
+        email.style.borderColor = 'var(--color-error)';
+      }
+    });
+
+    document.getElementById('loginForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const valid = Array.from(this.querySelectorAll('.form-control[required]')).every(f => StacklyValidate.validateField(f));
+      if (valid) {
+        const role = document.querySelector('input[name="role"]:checked').value;
+        const remember = document.getElementById('rememberMe').checked;
+        const session = { role, email: document.getElementById('loginEmail').value, loggedInAt: Date.now() };
+        (remember ? localStorage : sessionStorage).setItem('stackly_session', JSON.stringify(session));
+        document.getElementById('loginSuccess').style.display = 'block';
+        const dashboards = { admin: 'admin-dashboard.html', doctor: 'doctor-dashboard.html', patient: 'patient-dashboard.html' };
+        setTimeout(() => { window.location.href = dashboards[role]; }, 900);
+      }
+    });
+  </script>
+</body>
+</html>

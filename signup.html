@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="Create your STACKLY Veterinary Clinic account as an Admin, Doctor, or Patient.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body data-page="signup">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <div class="auth-wrap" id="main-content">
+    <div class="auth-visual" data-animate="fade-up">
+      <a href="index.html" class="auth-brand">
+        <img src="Images/stackly-logo.webp" alt="STACKLY Veterinary Clinic" width="48" height="48">
+        <span>VETERINARY CLINIC</span>
+      </a>
+      <span class="eyebrow" style="color:var(--color-gold);">Join STACKLY</span>
+      <h2>Create Your Account in Minutes.</h2>
+      <p style="color:rgba(255,255,255,0.85);max-width:420px;">Whether you're a pet parent, a doctor, or managing the clinic — your dashboard is built around your role.</p>
+      <ul style="display:flex;flex-direction:column;gap:14px;margin-top:var(--space-lg);color:rgba(255,255,255,0.85);">
+        <li>🐾 Patients track records &amp; book visits</li>
+        <li>🩺 Doctors manage schedules &amp; notes</li>
+        <li>🛠️ Admins oversee the whole clinic</li>
+      </ul>
+    </div>
+
+    <div class="auth-form-side">
+      <div class="auth-card" data-animate="zoom-in">
+        <a href="index.html" class="auth-back-btn">← Back to Home</a>
+
+        <a href="index.html" class="brand auth-brand-center">
+          <div class="brand-text">
+            <img src="Images/stackly-logo.webp" alt="STACKLY Veterinary Clinic" width="52" height="52">
+            <span class="brand-tagline">VETERINARY CLINIC</span>
+          </div>
+        </a>
+
+        <div class="auth-tabs">
+          <a href="login.html">Login</a>
+          <a href="signup.html" class="active">Sign Up</a>
+        </div>
+
+        <h2 style="margin-bottom:6px;">Create Your Account</h2>
+        <p style="margin-bottom:var(--space-md);font-size:0.92rem;">It only takes a minute to get started.</p>
+
+        <form id="signupForm" data-validate novalidate>
+          <div class="form-group">
+            <label>I am signing up as</label>
+            <div class="role-select">
+              <input type="radio" name="role" id="suRoleAdmin" value="admin">
+              <label for="suRoleAdmin"><span>🛠️</span>Admin</label>
+              <input type="radio" name="role" id="suRoleDoctor" value="doctor">
+              <label for="suRoleDoctor"><span>🩺</span>Doctor</label>
+              <input type="radio" name="role" id="suRolePatient" value="patient" checked>
+              <label for="suRolePatient"><span>🐾</span>Patient</label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fullName">Full Name</label>
+            <input type="text" id="fullName" name="fullName" class="form-control" data-rule="name" required autocomplete="name">
+            <div class="field-message error-message">⚠ Enter your full name (e.g. John Smith).</div>
+            <div class="field-message success-message">✓ Looks good.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupEmail">Email Address</label>
+            <input type="email" id="signupEmail" name="signupEmail" class="form-control" data-rule="email" required autocomplete="email">
+            <div class="field-message error-message">⚠ Enter a valid email address (e.g. you@example.com).</div>
+            <div class="field-message success-message">✓ Looks good.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupPhone">Phone Number</label>
+            <input type="tel" id="signupPhone" name="signupPhone" class="form-control" data-rule="phone" required autocomplete="tel">
+            <div class="field-message error-message">⚠ Enter a valid phone number (7–13 digits).</div>
+            <div class="field-message success-message">✓ Looks good.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="signupPassword">Password</label>
+            <div class="input-wrap">
+              <input type="password" id="signupPassword" name="signupPassword" class="form-control" data-rule="password" required autocomplete="new-password">
+              <button type="button" class="toggle-password">Show</button>
+            </div>
+            <div class="password-strength"><div class="password-strength-bar"></div></div>
+            <div class="password-strength-label"></div>
+            <div class="field-message error-message">⚠ Min 8 characters with upper/lowercase, numbers &amp; symbols.</div>
+            <div class="field-message success-message">✓ Strong password.</div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="input-wrap">
+              <input type="password" id="confirmPassword" name="confirmPassword" class="form-control" data-rule="confirm-password" data-match="signupPassword" required autocomplete="new-password">
+              <button type="button" class="toggle-password">Show</button>
+            </div>
+            <div class="field-message error-message">⚠ Passwords do not match.</div>
+            <div class="field-message success-message">✓ Passwords match.</div>
+          </div>
+
+          <label class="checkbox-row" style="margin-bottom:var(--space-md);">
+            <input type="checkbox" id="agreeTerms" required> I agree to the Terms of Service &amp; Privacy Policy
+          </label>
+
+          <button type="submit" class="btn btn-primary btn-block">Create Account</button>
+          <p id="signupSuccess" style="display:none;color:var(--color-success);margin-top:12px;font-weight:600;text-align:center;">✓ Account created! Redirecting to login...</p>
+        </form>
+
+        <p style="text-align:center;margin-top:var(--space-md);font-size:0.9rem;">Already have an account? <a href="login.html" style="color:var(--color-teal);font-weight:600;">Log in</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const requiredFields = Array.from(this.querySelectorAll('.form-control[required]'));
+      let valid = requiredFields.every(f => StacklyValidate.validateField(f));
+      const terms = document.getElementById('agreeTerms');
+      if (!terms.checked) { valid = false; terms.parentElement.style.color = 'var(--color-error)'; }
+      else { terms.parentElement.style.color = ''; }
+      if (valid) {
+        document.getElementById('signupSuccess').style.display = 'block';
+        setTimeout(() => { window.location.href = 'login.html'; }, 1200);
+      }
+    });
+  </script>
+</body>
+</html>

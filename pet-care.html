@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pet Care Programs | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="STACKLY's pet care programs — wellness plans, nutrition guidance, vaccination schedules, and health guides for dogs, cats, and exotic pets.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    .vac-table { width: 100%; border-collapse: collapse; background: var(--color-card); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); }
+    .vac-table th, .vac-table td { padding: 14px 18px; text-align: left; border-bottom: 1px solid var(--color-border); font-size: 0.9rem; }
+    .vac-table th { background: var(--color-navy); color: #fff; font-weight: 700; }
+    .vac-table tr:last-child td { border-bottom: none; }
+    .vac-table tr:hover td { background: var(--color-bg-alt); }
+    .guide-card { padding: var(--space-md); display: flex; gap: 14px; align-items: flex-start; }
+    .guide-card .icon-badge { flex-shrink: 0; margin-bottom: 0; width: 52px; height: 52px; font-size: 1.3rem; }
+    @media (max-width: 768px) { .vac-table { font-size: 0.8rem; } .vac-table th, .vac-table td { padding: 10px; } }
+  </style>
+</head>
+<body data-page="pet-care">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Pet Care Programs</h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span>/</span><span>Pet Care</span>
+        </nav>
+      </div>
+    </section>
+
+    <!-- ================= WELLNESS PROGRAMS ================= -->
+    <section class="section">
+      <div class="container grid-2" style="align-items:center;">
+        <div data-animate="fade-up">
+          <span class="eyebrow">Wellness Programs</span>
+          <h2>Lifelong Plans Built Around Your Pet</h2>
+          <p>Preventive care catches problems before they become emergencies. Our wellness memberships bundle exams, vaccines, and diagnostics into one predictable annual plan — with no surprise costs.</p>
+          <div class="grid-2" style="gap:var(--space-md);margin-top:var(--space-md);">
+            <div class="card" style="padding:var(--space-md);">
+              <h3 style="font-size:1.05rem;">🐶 Puppy &amp; Kitten Plan</h3>
+              <p style="font-size:0.88rem;margin:0;">Vaccination series, deworming, and microchipping in the first year.</p>
+            </div>
+            <div class="card" style="padding:var(--space-md);">
+              <h3 style="font-size:1.05rem;">🐾 Adult Wellness Plan</h3>
+              <p style="font-size:0.88rem;margin:0;">Annual exams, bloodwork, and dental check-ups for ages 1–7.</p>
+            </div>
+            <div class="card" style="padding:var(--space-md);">
+              <h3 style="font-size:1.05rem;">🦴 Senior Care Plan</h3>
+              <p style="font-size:0.88rem;margin:0;">Twice-yearly screening for joint, organ, and cognitive health.</p>
+            </div>
+            <div class="card" style="padding:var(--space-md);">
+              <h3 style="font-size:1.05rem;">🦜 Exotic Pet Plan</h3>
+              <p style="font-size:0.88rem;margin:0;">Species-specific care for birds, reptiles, and small mammals.</p>
+            </div>
+          </div>
+        </div>
+        <div data-animate="zoom-in">
+          <img src="https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=700&h=600&q=80" alt="Vet checking a cat's heartbeat with a stethoscope" loading="lazy" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);" width="700" height="600">
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= NUTRITION ================= -->
+    <section class="section section-alt">
+      <div class="container grid-2" style="align-items:center;">
+        <div data-animate="zoom-in">
+          <img src="https://images.unsplash.com/photo-1517849845537-4d257902454a?auto=format&fit=crop&w=700&h=560&q=80" alt="Healthy pet food being measured into a bowl" loading="lazy" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);" width="700" height="560">
+        </div>
+        <div data-animate="fade-up">
+          <span class="eyebrow">Nutrition</span>
+          <h2>Food Is Medicine — We Help You Choose Right</h2>
+          <p>Our veterinary nutritionists build feeding plans based on breed, age, activity level, and any medical conditions. Whether your pet needs to lose weight, manage allergies, or simply thrive, we tailor a plan that fits.</p>
+          <ul style="display:flex;flex-direction:column;gap:12px;margin:1.5rem 0;">
+            <li>🥗 Personalized calorie &amp; portion guidance</li>
+            <li>⚖️ Weight management programs with monthly check-ins</li>
+            <li>🚫 Allergy &amp; sensitivity elimination diets</li>
+            <li>🧪 Prescription diet consultations</li>
+          </ul>
+          <a href="appointments.html" class="btn btn-primary">Book a Nutrition Consult</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= VACCINATION SCHEDULE ================= -->
+    <section class="section">
+      <div class="container">
+        <div class="section-head" data-animate="fade-up">
+          <span class="eyebrow">Vaccination Schedule</span>
+          <h2>Recommended Vaccine Timeline</h2>
+          <p>A general guide for puppies and kittens — your veterinarian will tailor the exact schedule to your pet's risk factors.</p>
+        </div>
+        <div style="overflow-x:auto;" data-animate="fade-up" data-delay="100">
+          <table class="vac-table">
+            <thead>
+              <tr><th>Age</th><th>Dogs</th><th>Cats</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>6–8 weeks</td><td>DHPP (1st dose)</td><td>FVRCP (1st dose)</td></tr>
+              <tr><td>10–12 weeks</td><td>DHPP (2nd dose), Leptospirosis</td><td>FVRCP (2nd dose)</td></tr>
+              <tr><td>14–16 weeks</td><td>DHPP (3rd dose), Rabies</td><td>FVRCP (3rd dose), Rabies</td></tr>
+              <tr><td>12–16 months</td><td>DHPP &amp; Rabies booster</td><td>FVRCP &amp; Rabies booster</td></tr>
+              <tr><td>Annually</td><td>Bordetella, Lyme (lifestyle-based)</td><td>FeLV (lifestyle-based)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= HEALTH GUIDES ================= -->
+    <section class="section section-alt">
+      <div class="container">
+        <div class="section-head" data-animate="fade-up">
+          <span class="eyebrow">Pet Health Guides</span>
+          <h2>Quick Reference Guides for Pet Parents</h2>
+        </div>
+        <div class="grid-3">
+          <div class="card guide-card" data-animate="fade-up">
+            <div class="icon-badge">🚨</div>
+            <div><h3 style="font-size:1rem;margin-bottom:4px;">Recognizing an Emergency</h3><p style="margin:0;font-size:0.88rem;">Know the signs that mean "go to the ER now" vs. "call to schedule."</p></div>
+          </div>
+          <div class="card guide-card" data-animate="fade-up" data-delay="100">
+            <div class="icon-badge">🦷</div>
+            <div><h3 style="font-size:1rem;margin-bottom:4px;">At-Home Dental Care</h3><p style="margin:0;font-size:0.88rem;">Simple daily habits that prevent costly dental disease later.</p></div>
+          </div>
+          <div class="card guide-card" data-animate="fade-up" data-delay="200">
+            <div class="icon-badge">🌡️</div>
+            <div><h3 style="font-size:1rem;margin-bottom:4px;">Spotting Early Illness</h3><p style="margin:0;font-size:0.88rem;">Subtle behavior changes that are worth a vet visit.</p></div>
+          </div>
+          <div class="card guide-card" data-animate="fade-up">
+            <div class="icon-badge">🐕</div>
+            <div><h3 style="font-size:1rem;margin-bottom:4px;">New Puppy Checklist</h3><p style="margin:0;font-size:0.88rem;">Everything to schedule in your puppy's first 6 months.</p></div>
+          </div>
+          <div class="card guide-card" data-animate="fade-up" data-delay="100">
+            <div class="icon-badge">🐈</div>
+            <div><h3 style="font-size:1rem;margin-bottom:4px;">Indoor Cat Enrichment</h3><p style="margin:0;font-size:0.88rem;">Keeping indoor cats active, calm, and at a healthy weight.</p></div>
+          </div>
+          <div class="card guide-card" data-animate="fade-up" data-delay="200">
+            <div class="icon-badge">🧓</div>
+            <div><h3 style="font-size:1rem;margin-bottom:4px;">Senior Pet Comfort</h3><p style="margin:0;font-size:0.88rem;">Adjusting home and diet for aging joints and senses.</p></div>
+          </div>
+        </div>
+        <div class="text-center" style="margin-top:2.5rem;">
+          <a href="appointments.html" class="btn btn-outline-dark">Book a Pet Care Consult</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="appointment-cta" aria-label="Book an appointment">
+      <div class="container cta-inner" data-animate="zoom-in">
+        <h2>Start a Wellness Plan Today</h2>
+        <p>Our care coordinators will help you choose the right plan for your pet's life stage.</p>
+        <a href="appointments.html" class="btn btn-gold">Book a Consultation</a>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+</html>
