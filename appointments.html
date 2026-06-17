@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book an Appointment | STACKLY Veterinary Clinic</title>
+  <meta name="description" content="Book an appointment at STACKLY Veterinary Clinic — choose your department, doctor, date, and preferred time slot in minutes.">
+  <link rel="icon" href="Images/stackly-logo.webp" type="image/webp">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Nunito:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <style>
+    .booking-shell { display: grid; grid-template-columns: 1.4fr 1fr; gap: var(--space-lg); align-items: start; }
+    .steps-row { display: flex; justify-content: space-between; margin-bottom: var(--space-lg); }
+    .step { display: flex; flex-direction: column; align-items: center; gap: 8px; flex: 1; position: relative; font-size: 0.8rem; font-weight: 600; color: var(--color-body); }
+    .step::before {
+      content: ''; position: absolute; top: 16px; left: -50%; width: 100%; height: 2px;
+      background: var(--color-border); z-index: -1;
+    }
+    .step:first-child::before { display: none; }
+    .step .step-num {
+      width: 34px; height: 34px; border-radius: 50%; display: grid; place-items: center;
+      background: var(--color-card); border: 2px solid var(--color-border); color: var(--color-body); font-weight: 700;
+      transition: all var(--t-fast);
+    }
+    .step.is-active .step-num, .step.is-done .step-num { background: var(--color-teal); border-color: var(--color-teal); color: #fff; }
+    .step.is-active, .step.is-done { color: var(--color-heading); }
+
+    .timeslot-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-top: 10px; }
+    .timeslot {
+      padding: 10px 6px; border: 1.5px solid var(--color-border); border-radius: var(--radius-sm);
+      background: var(--color-card); font-size: 0.85rem; font-weight: 600; text-align: center;
+      transition: all var(--t-fast);
+    }
+    .timeslot:hover { border-color: var(--color-teal); }
+    .timeslot.is-selected { background: var(--gradient-emerald); color: #fff; border-color: transparent; }
+    .timeslot.is-unavailable { opacity: 0.4; text-decoration: line-through; cursor: not-allowed; pointer-events: none; }
+
+    .summary-card { padding: var(--space-md); position: sticky; top: calc(var(--header-height) + 20px); }
+    .summary-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed var(--color-border); font-size: 0.9rem; }
+    .summary-row span:first-child { color: var(--color-body); }
+    .summary-row span:last-child { font-weight: 600; color: var(--color-heading); }
+
+    @media (max-width: 900px) { .booking-shell { grid-template-columns: 1fr; } .summary-card { position: static; } }
+    @media (max-width: 480px) { .timeslot-grid { grid-template-columns: repeat(2, 1fr); } .steps-row { font-size: 0.7rem; } }
+  </style>
+</head>
+<body data-page="appointments">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+  <header id="site-header" class="site-header"></header>
+
+  <main id="main-content">
+    <section class="page-hero">
+      <div class="container">
+        <h1>Book an Appointment</h1>
+        <nav class="breadcrumb" aria-label="Breadcrumb">
+          <a href="index.html">Home</a><span>/</span><span>Appointments</span>
+        </nav>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="steps-row" aria-hidden="true">
+          <div class="step is-active"><div class="step-num">1</div>Department</div>
+          <div class="step"><div class="step-num">2</div>Doctor</div>
+          <div class="step"><div class="step-num">3</div>Date &amp; Time</div>
+          <div class="step"><div class="step-num">4</div>Your Details</div>
+        </div>
+
+        <div class="booking-shell">
+          <form id="appointmentForm" data-validate novalidate>
+            <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up">
+              <span class="eyebrow">Step 1</span>
+              <h3>Select Department</h3>
+              <div class="form-group">
+                <label for="department">Department</label>
+                <select id="department" name="department" class="form-control" required>
+                  <option value="">Choose a department</option>
+                  <option value="general">General Practice</option>
+                  <option value="surgery">Surgery</option>
+                  <option value="medicine">Internal Medicine</option>
+                  <option value="dermatology">Dermatology &amp; Allergy</option>
+                  <option value="dentistry">Dentistry</option>
+                  <option value="emergency">Emergency &amp; Critical Care</option>
+                  <option value="exotic">Exotic &amp; Avian Medicine</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up" data-delay="100">
+              <span class="eyebrow">Step 2</span>
+              <h3>Select Doctor</h3>
+              <div class="form-group">
+                <label for="doctor">Doctor</label>
+                <select id="doctor" name="doctor" class="form-control" required>
+                  <option value="">Choose a department first</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up" data-delay="200">
+              <span class="eyebrow">Step 3</span>
+              <h3>Pick a Date &amp; Time</h3>
+              <div class="form-group">
+                <label for="apptDate">Preferred Date</label>
+                <input type="date" id="apptDate" name="apptDate" class="form-control" required>
+              </div>
+              <label>Available Time Slots</label>
+              <div class="timeslot-grid" id="timeslotGrid">
+                <button type="button" class="timeslot">9:00 AM</button>
+                <button type="button" class="timeslot">9:30 AM</button>
+                <button type="button" class="timeslot">10:00 AM</button>
+                <button type="button" class="timeslot is-unavailable">10:30 AM</button>
+                <button type="button" class="timeslot">11:00 AM</button>
+                <button type="button" class="timeslot">11:30 AM</button>
+                <button type="button" class="timeslot is-unavailable">1:00 PM</button>
+                <button type="button" class="timeslot">1:30 PM</button>
+                <button type="button" class="timeslot">2:00 PM</button>
+                <button type="button" class="timeslot">2:30 PM</button>
+                <button type="button" class="timeslot">3:00 PM</button>
+                <button type="button" class="timeslot">3:30 PM</button>
+              </div>
+              <input type="hidden" id="selectedSlot" name="selectedSlot">
+            </div>
+
+            <div class="card" style="padding:var(--space-lg);margin-bottom:var(--space-md);" data-animate="fade-up" data-delay="300">
+              <span class="eyebrow">Step 4</span>
+              <h3>Your Details</h3>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="ownerName">Full Name</label>
+                  <input type="text" id="ownerName" name="ownerName" class="form-control" data-rule="name" required>
+                  <div class="field-message error-message">⚠ Enter your full name.</div>
+                  <div class="field-message success-message">✓ Looks good.</div>
+                </div>
+                <div class="form-group">
+                  <label for="ownerPhone">Phone Number</label>
+                  <input type="tel" id="ownerPhone" name="ownerPhone" class="form-control" data-rule="phone" required>
+                  <div class="field-message error-message">⚠ Enter a valid phone number.</div>
+                  <div class="field-message success-message">✓ Looks good.</div>
+                </div>
+              </div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="ownerEmail">Email Address</label>
+                  <input type="email" id="ownerEmail" name="ownerEmail" class="form-control" data-rule="email" required>
+                  <div class="field-message error-message">⚠ Enter a valid email.</div>
+                  <div class="field-message success-message">✓ Looks good.</div>
+                </div>
+                <div class="form-group">
+                  <label for="petName">Pet Name</label>
+                  <input type="text" id="petName" name="petName" class="form-control" required>
+                  <div class="field-message error-message">⚠ Enter your pet's name.</div>
+                  <div class="field-message success-message">✓ Looks good.</div>
+                </div>
+              </div>
+              <div class="grid-2">
+                <div class="form-group">
+                  <label for="petSpecies">Pet Species</label>
+                  <select id="petSpecies" name="petSpecies" class="form-control" required>
+                    <option value="">Select species</option>
+                    <option>Dog</option><option>Cat</option><option>Bird</option><option>Rabbit</option><option>Other</option>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <label for="petAge">Pet Age (years)</label>
+                  <input type="number" id="petAge" name="petAge" class="form-control" min="0" max="40">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="apptNotes">Reason for Visit / Notes</label>
+                <textarea id="apptNotes" name="apptNotes" class="form-control" rows="4" placeholder="Tell us what's going on with your pet..."></textarea>
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Confirm Appointment</button>
+            <p id="appointmentSuccess" style="display:none;color:var(--color-success);margin-top:12px;font-weight:600;text-align:center;">✓ Appointment request received! We'll confirm by phone or email shortly.</p>
+          </form>
+
+          <aside class="card summary-card" data-animate="fade-up" data-delay="150">
+            <h3>Booking Summary</h3>
+            <div class="summary-row"><span>Department</span><span id="sumDept">—</span></div>
+            <div class="summary-row"><span>Doctor</span><span id="sumDoctor">—</span></div>
+            <div class="summary-row"><span>Date</span><span id="sumDate">—</span></div>
+            <div class="summary-row"><span>Time</span><span id="sumTime">—</span></div>
+            <div class="summary-row"><span>Pet Name</span><span id="sumPet">—</span></div>
+            <p style="margin-top:var(--space-md);font-size:0.85rem;color:var(--color-body);">Need to reschedule or cancel? Call us at <strong>+1 (800) 555-0150</strong> at least 4 hours before your visit.</p>
+          </aside>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="site-footer" class="site-footer"></footer>
+  <button id="scrollTopBtn" class="scroll-top" aria-label="Scroll to top">↑</button>
+
+  <link rel="stylesheet" href="assets/css/home.css">
+  <script src="assets/js/layout.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/validation.js"></script>
+  <script>
+    (function () {
+      const DOCTORS_BY_DEPT = {
+        general: ['Dr. Samuel Brooks — General Practice'],
+        surgery: ['Dr. Olivia Bennett — Chief Surgeon', 'Dr. Noah Whitfield — Orthopedic Surgery'],
+        medicine: ['Dr. Marcus Lee — Internal Medicine'],
+        dermatology: ['Dr. Priya Nandan — Dermatology & Allergy'],
+        dentistry: ['Dr. Grace Tanaka — Dentistry'],
+        emergency: ['Dr. Ethan Cole — Emergency & Critical Care'],
+        exotic: ['Dr. Layla Haddad — Exotic & Avian Medicine'],
+      };
+
+      const deptSelect = document.getElementById('department');
+      const doctorSelect = document.getElementById('doctor');
+      const dateInput = document.getElementById('apptDate');
+      const slotGrid = document.getElementById('timeslotGrid');
+      const selectedSlotInput = document.getElementById('selectedSlot');
+      const steps = document.querySelectorAll('.step');
+
+      dateInput.min = new Date().toISOString().split('T')[0];
+
+      deptSelect.addEventListener('change', () => {
+        const list = DOCTORS_BY_DEPT[deptSelect.value] || [];
+        doctorSelect.innerHTML = '<option value="">Choose a doctor</option>' +
+          list.map(d => `<option value="${d}">${d}</option>`).join('');
+        updateSummary();
+        updateSteps();
+      });
+
+      slotGrid.addEventListener('click', (e) => {
+        const btn = e.target.closest('.timeslot');
+        if (!btn || btn.classList.contains('is-unavailable')) return;
+        slotGrid.querySelectorAll('.timeslot').forEach(t => t.classList.remove('is-selected'));
+        btn.classList.add('is-selected');
+        selectedSlotInput.value = btn.textContent;
+        updateSummary();
+        updateSteps();
+      });
+
+      [doctorSelect, dateInput, document.getElementById('petName')].forEach(el => {
+        el.addEventListener('input', () => { updateSummary(); updateSteps(); });
+        el.addEventListener('change', () => { updateSummary(); updateSteps(); });
+      });
+
+      function updateSummary() {
+        document.getElementById('sumDept').textContent = deptSelect.options[deptSelect.selectedIndex]?.text !== 'Choose a department' ? (deptSelect.value ? deptSelect.options[deptSelect.selectedIndex].text : '—') : '—';
+        document.getElementById('sumDoctor').textContent = doctorSelect.value || '—';
+        document.getElementById('sumDate').textContent = dateInput.value || '—';
+        document.getElementById('sumTime').textContent = selectedSlotInput.value || '—';
+        document.getElementById('sumPet').textContent = document.getElementById('petName').value || '—';
+      }
+
+      function updateSteps() {
+        const filled = [deptSelect.value, doctorSelect.value, (dateInput.value && selectedSlotInput.value), document.getElementById('petName').value];
+        steps.forEach((step, idx) => {
+          step.classList.toggle('is-done', !!filled[idx]);
+          step.classList.toggle('is-active', !filled[idx] && (idx === 0 || filled[idx - 1]));
+        });
+      }
+
+      document.getElementById('appointmentForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        const valid = Array.from(this.querySelectorAll('.form-control[required]')).every(f => StacklyValidate.validateField(f));
+        if (valid && selectedSlotInput.value) {
+          document.getElementById('appointmentSuccess').style.display = 'block';
+          updateSummary();
+        } else if (!selectedSlotInput.value) {
+          alert('Please select an available time slot.');
+        }
+      });
+
+      updateSteps();
+    })();
+  </script>
+</body>
+</html>
