@@ -14,12 +14,6 @@
   <link rel="stylesheet" href="assets/css/layout.css">
   <link rel="stylesheet" href="assets/css/components.css">
   <link rel="stylesheet" href="assets/css/animations.css">
-  <style>
-    .doctor-detail-card { display: flex; flex-direction: column; }
-    .doctor-detail-card .doctor-meta { padding: 0 var(--space-md) var(--space-md); font-size: 0.85rem; color: var(--color-body); display: flex; flex-direction: column; gap: 6px; }
-    .doctor-detail-card .doctor-meta span strong { color: var(--color-heading); }
-    .doctor-bio { font-size: 0.85rem; color: var(--color-body); margin: 8px 0 0; line-height: 1.5; }
-  </style>
 </head>
 <body data-page="doctors">
   <a href="#main-content" class="skip-link">Skip to content</a>
@@ -59,93 +53,231 @@
         </div>
 
         <div class="grid-4" id="doctorsGrid">
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-dept="surgery">
-            <div class="doctor-photo"><img src="Images/webp/dr-olivia-bennett.webp" alt="Dr. Olivia Bennett" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Olivia Bennett</h3><span>Chief Veterinary Surgeon</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 18 years</span>
-              <span><strong>Certifications:</strong> DVM, ACVS</span>
-              <span><strong>Schedule:</strong> Mon–Fri, 9am–4pm</span>
-              <p class="doctor-bio">Leads our surgical department with a focus on minimally invasive orthopedic and soft-tissue procedures.</p>
+
+          <!-- Dr. Olivia Bennett -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-dept="surgery">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-olivia-bennett.webp" alt="Dr. Olivia Bennett" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Olivia Bennett</h3>
+                  <span class="doctor-specialty">Chief Veterinary Surgeon</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Olivia Bennett</p>
+                <span class="doctor-back-specialty">Chief Veterinary Surgeon</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 18 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM, ACVS</div>
+                  <div class="meta-row"><strong>Schedule</strong> Mon–Fri, 9am–4pm</div>
+                </div>
+                <p class="doctor-back-bio">Leads our surgical department with a focus on minimally invasive orthopedic and soft-tissue procedures.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
 
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="100" data-dept="medicine">
-            <div class="doctor-photo"><img src="Images/webp/dr-marcus-lee.webp" alt="Dr. Marcus Lee" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Marcus Lee</h3><span>Internal Medicine</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 14 years</span>
-              <span><strong>Certifications:</strong> DVM, DACVIM</span>
-              <span><strong>Schedule:</strong> Tue–Sat, 10am–6pm</span>
-              <p class="doctor-bio">Specializes in diagnosing complex, chronic conditions affecting senior pets and managing long-term care plans.</p>
+          <!-- Dr. Marcus Lee -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-delay="100" data-dept="medicine">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-marcus-lee.webp" alt="Dr. Marcus Lee" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Marcus Lee</h3>
+                  <span class="doctor-specialty">Internal Medicine</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Marcus Lee</p>
+                <span class="doctor-back-specialty">Internal Medicine</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 14 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM, DACVIM</div>
+                  <div class="meta-row"><strong>Schedule</strong> Tue–Sat, 10am–6pm</div>
+                </div>
+                <p class="doctor-back-bio">Specializes in diagnosing complex, chronic conditions affecting senior pets and managing long-term care plans.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
 
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="200" data-dept="dermatology">
-            <div class="doctor-photo"><img src="Images/webp/dr-priya-nandan.webp" alt="Dr. Priya Nandan" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Priya Nandan</h3><span>Dermatology &amp; Allergy</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 11 years</span>
-              <span><strong>Certifications:</strong> DVM, Dip-ACVD</span>
-              <span><strong>Schedule:</strong> Mon, Wed, Fri 9am–3pm</span>
-              <p class="doctor-bio">Treats chronic skin conditions, food allergies, and ear infections using evidence-based dermatology protocols.</p>
+          <!-- Dr. Priya Nandan -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-delay="200" data-dept="dermatology">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-priya-nandan.webp" alt="Dr. Priya Nandan" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Priya Nandan</h3>
+                  <span class="doctor-specialty">Dermatology &amp; Allergy</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Priya Nandan</p>
+                <span class="doctor-back-specialty">Dermatology &amp; Allergy</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 11 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM, Dip-ACVD</div>
+                  <div class="meta-row"><strong>Schedule</strong> Mon, Wed, Fri 9am–3pm</div>
+                </div>
+                <p class="doctor-back-bio">Treats chronic skin conditions, food allergies, and ear infections using evidence-based dermatology protocols.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
 
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="300" data-dept="emergency">
-            <div class="doctor-photo"><img src="Images/webp/dr-ethan-cole.webp" alt="Dr. Ethan Cole" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Ethan Cole</h3><span>Emergency &amp; Critical Care</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 9 years</span>
-              <span><strong>Certifications:</strong> DVM, DACVECC</span>
-              <span><strong>Schedule:</strong> 24/7 Rotating Shift</span>
-              <p class="doctor-bio">Heads our overnight critical care unit, stabilizing trauma and high-risk cases around the clock.</p>
+          <!-- Dr. Ethan Cole -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-delay="300" data-dept="emergency">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-ethan-cole.webp" alt="Dr. Ethan Cole" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Ethan Cole</h3>
+                  <span class="doctor-specialty">Emergency &amp; Critical Care</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Ethan Cole</p>
+                <span class="doctor-back-specialty">Emergency &amp; Critical Care</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 9 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM, DACVECC</div>
+                  <div class="meta-row"><strong>Schedule</strong> 24/7 Rotating Shift</div>
+                </div>
+                <p class="doctor-back-bio">Heads our overnight critical care unit, stabilizing trauma and high-risk cases around the clock.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
 
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-dept="dentistry">
-            <div class="doctor-photo"><img src="Images/webp/dr-grace-tanaka.webp" alt="Dr. Grace Tanaka" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Grace Tanaka</h3><span>Dentistry</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 12 years</span>
-              <span><strong>Certifications:</strong> DVM, Dip-AVDC</span>
-              <span><strong>Schedule:</strong> Mon–Thu, 8am–2pm</span>
-              <p class="doctor-bio">Focuses on preventive dentistry and oral surgery, helping pets avoid painful dental disease.</p>
+          <!-- Dr. Grace Tanaka -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-dept="dentistry">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-grace-tanaka.webp" alt="Dr. Grace Tanaka" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Grace Tanaka</h3>
+                  <span class="doctor-specialty">Dentistry</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Grace Tanaka</p>
+                <span class="doctor-back-specialty">Dentistry</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 12 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM, Dip-AVDC</div>
+                  <div class="meta-row"><strong>Schedule</strong> Mon–Thu, 8am–2pm</div>
+                </div>
+                <p class="doctor-back-bio">Focuses on preventive dentistry and oral surgery, helping pets avoid painful dental disease.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
 
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="100" data-dept="surgery">
-            <div class="doctor-photo"><img src="Images/webp/dr-noah-whitfield.webp" alt="Dr. Noah Whitfield" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Noah Whitfield</h3><span>Orthopedic Surgery</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 16 years</span>
-              <span><strong>Certifications:</strong> DVM, ACVS</span>
-              <span><strong>Schedule:</strong> Wed–Sun, 9am–5pm</span>
-              <p class="doctor-bio">Performs advanced joint and fracture repair surgery, including ACL and hip dysplasia correction.</p>
+          <!-- Dr. Noah Whitfield -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-delay="100" data-dept="surgery">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-noah-whitfield.webp" alt="Dr. Noah Whitfield" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Noah Whitfield</h3>
+                  <span class="doctor-specialty">Orthopedic Surgery</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Noah Whitfield</p>
+                <span class="doctor-back-specialty">Orthopedic Surgery</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 16 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM, ACVS</div>
+                  <div class="meta-row"><strong>Schedule</strong> Wed–Sun, 9am–5pm</div>
+                </div>
+                <p class="doctor-back-bio">Performs advanced joint and fracture repair surgery, including ACL and hip dysplasia correction.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
 
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="200" data-dept="exotic">
-            <div class="doctor-photo"><img src="Images/webp/dr-layla-haddad.webp" alt="Dr. Layla Haddad" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Layla Haddad</h3><span>Exotic &amp; Avian Medicine</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 10 years</span>
-              <span><strong>Certifications:</strong> DVM, ABVP-Avian</span>
-              <span><strong>Schedule:</strong> Tue, Thu, Sat 10am–4pm</span>
-              <p class="doctor-bio">Cares for birds, reptiles, and small mammals with specialized handling and species-specific protocols.</p>
+          <!-- Dr. Layla Haddad -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-delay="200" data-dept="exotic">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-layla-haddad.webp" alt="Dr. Layla Haddad" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Layla Haddad</h3>
+                  <span class="doctor-specialty">Exotic &amp; Avian Medicine</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Layla Haddad</p>
+                <span class="doctor-back-specialty">Exotic &amp; Avian Medicine</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 10 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM, ABVP-Avian</div>
+                  <div class="meta-row"><strong>Schedule</strong> Tue, Thu, Sat 10am–4pm</div>
+                </div>
+                <p class="doctor-back-bio">Cares for birds, reptiles, and small mammals with specialized handling and species-specific protocols.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
 
-          <article class="card doctor-detail-card" data-animate="zoom-in" data-delay="300" data-dept="general">
-            <div class="doctor-photo"><img src="Images/webp/dr-samuel-brooks.webp" alt="Dr. Samuel Brooks" loading="lazy" width="400" height="500"><a href="appointments.html" class="book-overlay-btn">Book Appointment →</a></div>
-            <div class="doctor-info"><h3>Dr. Samuel Brooks</h3><span>General Practice</span></div>
-            <div class="doctor-meta">
-              <span><strong>Experience:</strong> 7 years</span>
-              <span><strong>Certifications:</strong> DVM</span>
-              <span><strong>Schedule:</strong> Mon–Fri, 8am–4pm</span>
-              <p class="doctor-bio">Your pet's first point of contact — handling wellness exams, minor illness, and referrals to specialists.</p>
+          <!-- Dr. Samuel Brooks -->
+          <article class="doctor-flip-wrapper" data-animate="zoom-in" data-delay="300" data-dept="general">
+            <div class="doctor-flip-card">
+              <div class="doctor-flip-front">
+                <div class="doctor-img-wrap">
+                  <img src="Images/webp/dr-samuel-brooks.webp" alt="Dr. Samuel Brooks" loading="lazy">
+                </div>
+                <div class="doctor-front-info">
+                  <h3>Dr. Samuel Brooks</h3>
+                  <span class="doctor-specialty">General Practice</span>
+                  <span class="flip-hint">hover to learn more ›</span>
+                </div>
+              </div>
+              <div class="doctor-flip-back">
+                <p class="doctor-back-name">Dr. Samuel Brooks</p>
+                <span class="doctor-back-specialty">General Practice</span>
+                <div class="back-divider"></div>
+                <div class="doctor-back-meta">
+                  <div class="meta-row"><strong>Exp.</strong> 7 years</div>
+                  <div class="meta-row"><strong>Cert.</strong> DVM</div>
+                  <div class="meta-row"><strong>Schedule</strong> Mon–Fri, 8am–4pm</div>
+                </div>
+                <p class="doctor-back-bio">Your pet's first point of contact — handling wellness exams, minor illness, and referrals to specialists.</p>
+                <a href="appointments.html" class="doctor-back-btn">Book Appointment →</a>
+              </div>
             </div>
           </article>
+
         </div>
       </div>
     </section>
@@ -172,7 +304,7 @@
       this.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
       btn.classList.add('active');
       const filter = btn.getAttribute('data-filter');
-      document.querySelectorAll('#doctorsGrid .doctor-detail-card').forEach(card => {
+      document.querySelectorAll('#doctorsGrid .doctor-flip-wrapper').forEach(card => {
         const match = filter === 'all' || card.getAttribute('data-dept') === filter;
         card.style.display = match ? '' : 'none';
       });
